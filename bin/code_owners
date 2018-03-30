@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+
+$LOAD_PATH << File.join(File.dirname(__FILE__), '..', 'lib')
+require 'code_owners'
+
+CodeOwners.ownerships.each do |ownership_status|
+  owner_info = ownership_status[:owner].dup
+  owner_info += " per line #{ownership_status[:line]}, #{ownership_status[:pattern]}" if owner_info != "UNOWNED"
+  puts "#{ownership_status[:file].ljust(100,' ')} #{owner_info}"
+end

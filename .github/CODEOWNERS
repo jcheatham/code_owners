@@ -1,0 +1,13 @@
+# This is a CODEOWNERS file. See https://help.github.com/articles/about-codeowners/
+# this is also intentionally poorly written for testing purposes
+
+
+# empty line followed by a comment?!  madness
+lib/*                   @jcheatham
+spec/*                  @jcheatham
+Rakefile                @jcheatham
+
+*code_owners*           @jcheatham
+
+Gemfile*		@jcheatham
+.git*                   @jcheatham
