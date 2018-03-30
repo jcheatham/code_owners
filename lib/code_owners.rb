@@ -28,7 +28,9 @@ module CodeOwners
 
     # read the github file and spit out a slightly formatted list of patterns and their owners
     def pattern_owners
-      File.read(".github/CODEOWNERS").split("\n").map do |line|
+      current_repo_path = `git rev-parse --show-toplevel`.strip
+      codeowner_path = File.join(current_repo_path, ".github/CODEOWNERS")
+      File.read(codeowner_path).split("\n").map do |line|
         line.gsub(/#.*/, '').gsub(/^$/, " @").split(/\s+@/, 2)
       end
     end

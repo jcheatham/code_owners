@@ -25,6 +25,14 @@ RSpec.describe CodeOwners do
       expect(owners).to include("jcheatham")
       expect(patterns).to include("lib/*")
     end
+
+    it "works when invoked in a repo's subdirectory" do
+      Dir.chdir("spec") do
+        patterns, owners = CodeOwners.pattern_owners.transpose
+        expect(owners).to include("jcheatham")
+        expect(patterns).to include("lib/*")
+      end
+    end
   end
 
   describe ".raw_git_ownership" do
