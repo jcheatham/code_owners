@@ -16,8 +16,7 @@ module CodeOwners
     def ownerships
       patterns, owners = pattern_owners.transpose
 
-      raw_git_ownership(patterns).map do |status|
-        _, _exfile, line, pattern, file = status.match(/^(.*):(\d*):(.*)\t(.*)$/).to_a
+      git_owner_info(patterns).map do |line, pattern, file|
         if line.empty?
           { file: file, owner: "UNOWNED" }
         else
@@ -35,15 +34,31 @@ module CodeOwners
       end
     end
 
+    def git_owner_info(patterns)
+      make_utf8(raw_git_owner_info(patterns)).lines.map do |info|
+        _, _exfile, line, pattern, file = info.strip.match(/^(.*):(\d*):(.*)\t(.*)$/).to_a
+        [line, pattern, file]
+      end
+    end
+
     # expects an array of gitignore compliant patterns
     # generates a check-ignore formatted string for each file in the repo
-    def raw_git_ownership(patterns)
+    def raw_git_owner_info(patterns)
       Tempfile.open('codeowner_patterns') do |file|
         file.write(patterns.join("\n"))
         file.rewind
-        cmd = "git ls-files | xargs -- git -c \"core.excludesfile=#{file.path}\" check-ignore --no-index -v -n"
-        `#{cmd}`.lines.map(&:strip)
+        `git ls-files | xargs -- git -c \"core.excludesfile=#{file.path}\" check-ignore --no-index -v -n`
       end
+    end
+
+    private
+
+    def make_utf8(input)
+      input.force_encoding(Encoding::UTF_8)
+      return input if input.valid_encoding?
+      input.encode!(Encoding::UTF_16, invalid: :replace, replace: '�')
+      input.encode!(Encoding::UTF_8, Encoding::UTF_16)
+      input
     end
   end
 end
