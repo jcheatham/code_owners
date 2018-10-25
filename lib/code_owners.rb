@@ -27,7 +27,6 @@ module CodeOwners
 
     # read the github file and spit out a slightly formatted list of patterns and their owners
     def pattern_owners
-      current_repo_path = `git rev-parse --show-toplevel`.strip
       codeowner_path = File.join(current_repo_path, ".github/CODEOWNERS")
       File.read(codeowner_path).split("\n").map do |line|
         line.gsub(/#.*/, '').gsub(/^$/, " @").split(/\s+@/, 2)
@@ -47,7 +46,7 @@ module CodeOwners
       Tempfile.open('codeowner_patterns') do |file|
         file.write(patterns.join("\n"))
         file.rewind
-        `git ls-files | xargs -- git -c \"core.excludesfile=#{file.path}\" check-ignore --no-index -v -n`
+        `cd #{current_repo_path} && git ls-files | xargs -- git -c \"core.excludesfile=#{file.path}\" check-ignore --no-index -v -n`
       end
     end
 
@@ -59,6 +58,10 @@ module CodeOwners
       input.encode!(Encoding::UTF_16, invalid: :replace, replace: '�')
       input.encode!(Encoding::UTF_8, Encoding::UTF_16)
       input
+    end
+
+    def current_repo_path
+      `git rev-parse --show-toplevel`.strip
     end
   end
 end
