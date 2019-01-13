@@ -25,9 +25,18 @@ module CodeOwners
       end
     end
 
+    def search_codeowners_file
+      paths = ["CODEOWNERS", "docs/CODEOWNERS", ".github/CODEOWNERS"]
+      for path in paths
+        current_file_path = File.join(current_repo_path, path)
+        return current_file_path if File.exist?(current_file_path)
+      end
+      abort("[ERROR] CODEOWNERS file does not exist.")
+    end
+
     # read the github file and spit out a slightly formatted list of patterns and their owners
     def pattern_owners
-      codeowner_path = File.join(current_repo_path, ".github/CODEOWNERS")
+      codeowner_path = search_codeowners_file
       File.read(codeowner_path).split("\n").map do |line|
         line.gsub(/#.*/, '').gsub(/^$/, " @").split(/\s+@/, 2)
       end
