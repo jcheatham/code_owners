@@ -13,14 +13,22 @@ module CodeOwners
     # -v -> verbose, outputs details about the matching pattern (if any) for each given pathname
     # -n -> non-matching, shows given paths which don't match any pattern
 
-    def ownerships
-      patterns, owners = pattern_owners.transpose
+    def log(message)
+      puts message
+    end
 
-      git_owner_info(patterns).map do |line, pattern, file|
+    def ownerships
+      patterns = pattern_owners
+      git_owner_info(patterns.map { |p| p[0] }).map do |line, pattern, file|
         if line.empty?
-          { file: file, owner: "UNOWNED" }
+          { file: file, owner: "UNOWNED", line: nil, pattern: nil }
         else
-          { file: file, owner: owners[line.to_i - 1], line: line, pattern: pattern }
+          {
+            file: file,
+            owner: patterns.fetch(line.to_i-1)[1],
+            line: line,
+            pattern: pattern
+          }
         end
       end
     end
@@ -35,11 +43,23 @@ module CodeOwners
     end
 
     # read the github file and spit out a slightly formatted list of patterns and their owners
+    # Empty/invalid/commented lines are still included in order to preserve line numbering
     def pattern_owners
       codeowner_path = search_codeowners_file
-      File.read(codeowner_path).split("\n").map do |line|
-        line.gsub(/#.*/, '').gsub(/^$/, " @").split(/\s+@/, 2)
-      end
+      patterns = []
+      File.read(codeowner_path).split("\n").each_with_index { |line, i|
+        path_owner = line.split(/\s+@/, 2)
+        if line.match(/^\s*(?:#.*)?$/)
+          patterns.push ['', ''] # Comment/empty line
+        elsif path_owner.length != 2 || (path_owner[0].empty? && !path_owner[1].empty?)
+          log "Parse error line #{(i+1).to_s}: \"#{line}\""
+          patterns.push ['', ''] # Invalid line
+        else
+          path_owner[1] = '@'+path_owner[1]
+          patterns.push path_owner
+        end
+      }
+      return patterns
     end
 
     def git_owner_info(patterns)
