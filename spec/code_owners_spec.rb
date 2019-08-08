@@ -1,37 +1,70 @@
 require 'code_owners'
+require 'tmpdir'
 
-RSpec.describe CodeOwners do
+RSpec.describe CodeOwners do |rspec|
   describe ".ownerships" do
     it "assigns owners to things" do
-      expect(CodeOwners).to receive(:pattern_owners).and_return([["pat1", "own1"], ["pat2", "own2"], ["pat3", "own3"]])
+      expect(CodeOwners).to receive(:pattern_owners).and_return([["pat1", "own1"], ["pat2*", "own2"], ["pat3", "own3"]])
       expect(CodeOwners).to receive(:git_owner_info).and_return(
         [
-          ["2", "whatever/pattern/thing", "this/is/a/file"],
+          ["2", "pat2*", "pat2file"],
           ["", "", "unowned/file"]
         ]
       )
       expect(CodeOwners.ownerships).to eq(
         [
-          { file: "this/is/a/file", owner: "own2", line: "2", pattern: "whatever/pattern/thing" },
-          { file: "unowned/file",   owner: "UNOWNED"}
+          { file: "pat2file", owner: "own2", line: "2", pattern: "pat2*" },
+          { file: "unowned/file", owner: "UNOWNED", line: nil, pattern: nil }
         ]
       )
     end
   end
 
   describe ".pattern_owners" do
+    around(:each) do |example|
+      Dir.mktmpdir { |d|
+        @d = d
+        f = File.new(File.join(d, 'CODEOWNERS'), 'w+')
+        f.write <<-CODEOWNERS
+lib/* @jcheatham
+some/path/** @someoneelse
+other/path/* @someoneelse @anotherperson
+invalid/codeowners/line 
+     @AnotherInvalidLine
+#comment-line (empty line next)
+
+# another comment line
+CODEOWNERS
+        f.close
+        example.run
+      }
+    end
+
     it "returns a list of patterns and owners" do
-      patterns, owners = CodeOwners.pattern_owners.transpose
-      expect(owners).to include("jcheatham")
-      expect(patterns).to include("lib/*")
+      expect(CodeOwners).to receive(:current_repo_path).and_return(@d)
+      expect(CodeOwners).to receive(:log).twice
+      pattern_owners = CodeOwners.pattern_owners
+      expect(pattern_owners).to include(["other/path/*", "@someoneelse @anotherperson"])
     end
 
     it "works when invoked in a repo's subdirectory" do
-      Dir.chdir("spec") do
-        patterns, owners = CodeOwners.pattern_owners.transpose
-        expect(owners).to include("jcheatham")
-        expect(patterns).to include("lib/*")
+      expect(CodeOwners).to receive(:current_repo_path).and_return(@d)
+      expect(CodeOwners).to receive(:log).twice
+      subdir = File.join(@d, 'spec')
+      Dir.mkdir(subdir)
+      Dir.chdir(subdir) do
+        pattern_owners = CodeOwners.pattern_owners
+        expect(pattern_owners).to include(["lib/*", "@jcheatham"])
       end
+    end
+
+    it "prints validation errors and skips lines that aren't the expected format" do
+      expect(CodeOwners).to receive(:current_repo_path).and_return(@d)
+      expect(CodeOwners).to receive(:log).with("Parse error line 4: \"invalid/codeowners/line \"")
+      expect(CodeOwners).to receive(:log).with("Parse error line 5: \"     @AnotherInvalidLine\"")
+      pattern_owners = CodeOwners.pattern_owners
+      expect(pattern_owners).not_to include(["", "@AnotherInvalidLine"])
+      expect(pattern_owners).to include(["", ""])
     end
   end
 
