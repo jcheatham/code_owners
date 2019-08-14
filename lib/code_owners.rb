@@ -2,7 +2,9 @@ require "code_owners/version"
 require "tempfile"
 
 module CodeOwners
+  NO_OWNER = 'UNOWNED'
   class << self
+
     # github's CODEOWNERS rules (https://help.github.com/articles/about-codeowners/) are allegedly based on the gitignore format.
     # but you can't tell ls-files to ignore tracked files via an arbitrary pattern file
     # so we need to jump through some hacky git-fu hoops
@@ -21,7 +23,7 @@ module CodeOwners
       patterns = pattern_owners
       git_owner_info(patterns.map { |p| p[0] }).map do |line, pattern, file|
         if line.empty?
-          { file: file, owner: "UNOWNED", line: nil, pattern: nil }
+          { file: file, owner: NO_OWNER, line: nil, pattern: nil }
         else
           {
             file: file,
