@@ -2,9 +2,29 @@
 
 $LOAD_PATH << File.join(File.dirname(__FILE__), '..', 'lib')
 require 'code_owners'
+require 'optparse'
 
+options = {}
+OptionParser.new do |opts|
+  opts.banner = "usage: code_owners [options]"
+  opts.on('-u', '--unowned', TrueClass, 'Display unowned files only') do |u|
+    options[:unowned] = u
+  end
+  opts.on('-e', '--error-unowned', TrueClass, 'Exit with error status if any files are unowned') do |e|
+    options[:error_unowned] = e
+  end
+end.parse!
+
+unowned_error = false
 CodeOwners.ownerships.each do |ownership_status|
   owner_info = ownership_status[:owner].dup
+  if owner_info != CodeOwners::NO_OWNER
+    next if options[:unowned]
+  else
+    unowned_error ||= options[:error_unowned]
+  end
   owner_info += " per line #{ownership_status[:line]}, #{ownership_status[:pattern]}" if owner_info != "UNOWNED"
   puts "#{ownership_status[:file].ljust(100,' ')} #{owner_info}"
 end
+
+exit(unowned_error && 1 || 0)
