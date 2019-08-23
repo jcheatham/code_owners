@@ -13,7 +13,7 @@ RSpec.describe CodeOwners do |rspec|
       )
       expect(CodeOwners.ownerships).to eq(
         [
-          { file: "pat2file", owner: "own2", line: "2", pattern: "pat2*" },
+          { file: "pat2file", owner: "own2", line: 2, pattern: "pat2*" },
           { file: "unowned/file", owner: "UNOWNED", line: nil, pattern: nil }
         ]
       )
@@ -24,8 +24,8 @@ RSpec.describe CodeOwners do |rspec|
     around(:each) do |example|
       Dir.mktmpdir { |d|
         @d = d
-        f = File.new(File.join(d, 'CODEOWNERS'), 'w+')
-        f.write <<-CODEOWNERS
+        f = File.new(File.join(@d, 'CODEOWNERS'), 'w+')
+        @codeowners_content = <<-CODEOWNERS
 lib/* @jcheatham
 some/path/** @someoneelse
 other/path/* @someoneelse @anotherperson
@@ -34,7 +34,11 @@ invalid/codeowners/line
 #comment-line (empty line next)
 
 # another comment line
+# Then the following should take precedence over the above
+lib/some/specific/path.rb @someonespecific
+other/path/something.txt @someonenew
 CODEOWNERS
+        f.write @codeowners_content
         f.close
         example.run
       }
@@ -65,6 +69,21 @@ CODEOWNERS
       pattern_owners = CodeOwners.pattern_owners
       expect(pattern_owners).not_to include(["", "@AnotherInvalidLine"])
       expect(pattern_owners).to include(["", ""])
+    end
+
+    it "respects order-based precedence of ownership rules" do
+      Dir.chdir(@d) do
+        # For this test we actually need to get Git involved, so we need a dummy repo
+        `git init ./
+        mkdir -p some/path other/path lib/some/specific
+        touch lib/some/specific/path.rb
+        touch other/path/something.txt
+        git add ./
+        git commit -a -m "initial commit"`
+
+        owner_info = CodeOwners.ownerships.map { |h| "#{h[:file]}::#{h[:owner]}::#{h[:line]}" }
+        expect(owner_info).to include('lib/some/specific/path.rb::@someonenew::10')
+      end
     end
   end
 

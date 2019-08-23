@@ -28,7 +28,7 @@ module CodeOwners
           {
             file: file,
             owner: patterns.fetch(line.to_i-1)[1],
-            line: line,
+            line: line.to_i,
             pattern: pattern
           }
         end
