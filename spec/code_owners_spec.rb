@@ -87,4 +87,16 @@ CODEOWNERS
       expect(raw_ownership).to match(/^(?:.*:\d*:.*\t.*\n)+$/)
     end
   end
+
+  describe "code_owners" do
+    VERSION_REGEX = /Version: \d+\.\d+\.\d+(-[a-z0-9]+)?/i
+
+    it "prints a version number with the short option" do
+      expect(`bin#{File::SEPARATOR}code_owners -v`).to match VERSION_REGEX
+    end
+
+    it "prints a version number with the short option" do
+      expect(`bin#{File::SEPARATOR}code_owners --version`).to match VERSION_REGEX
+    end
+  end
 end

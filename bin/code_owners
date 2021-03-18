@@ -2,6 +2,7 @@
 
 $LOAD_PATH << File.join(File.dirname(__FILE__), '..', 'lib')
 require 'code_owners'
+require 'code_owners/version'
 require 'optparse'
 
 options = {}
@@ -12,6 +13,10 @@ OptionParser.new do |opts|
   end
   opts.on('-e', '--error-unowned', TrueClass, 'Exit with error status if any files are unowned') do |e|
     options[:error_unowned] = e
+  end
+  opts.on('-v', '--version', TrueClass, 'Display the version of the gem') do |_|
+    puts "Version: #{CodeOwners::VERSION}"
+    exit 0
   end
 end.parse!
 
