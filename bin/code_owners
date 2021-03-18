@@ -1,5 +1,15 @@
 #!/usr/bin/env ruby
 
+unless system('git --version > /dev/null')
+  STDERR.puts 'Git does not appear to be installed.'
+  exit 2
+end
+
+unless system('git rev-parse --is-inside-work-tree > /dev/null')
+  STDERR.puts 'The current working directory must be a Git repo.'
+  exit 3
+end
+
 $LOAD_PATH << File.join(File.dirname(__FILE__), '..', 'lib')
 require 'code_owners'
 require 'optparse'
