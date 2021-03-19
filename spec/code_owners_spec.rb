@@ -70,11 +70,32 @@ CODEOWNERS
 
   describe ".git_owner_info" do
     it "returns a massaged list of git ownership info" do
-      expect(CodeOwners).to receive(:raw_git_owner_info).and_return("this_gets_discarded:2:whatever/pattern/thing\tthis/is/a/file\n::\tBad\xEF\xEF\xEF\xEF chars\xC3\xA5\xE2\x88\x86\xC6\x92.txt" )
+      expect(CodeOwners).to receive(:raw_git_owner_info).and_return([
+        "this_gets_discarded:2:whatever/pattern/thing\tthis/is/a/file",
+        "::\tBad\xEF\xEF\xEF\xEF chars\xC3\xA5\xE2\x88\x86\xC6\x92.txt",
+      ].join("\n"))
+
       expect(CodeOwners.git_owner_info(["/lib/*"])).to eq(
         [
           ["2", "whatever/pattern/thing", "this/is/a/file"],
           ["", "", "Bad���� charså∆ƒ.txt"]
+        ]
+      )
+    end
+
+    it "filters out .gitignore matches" do
+      expect(CodeOwners).to receive(:raw_git_owner_info).and_return([
+        ".gitignore:1:pattern1\tduck1",
+        "log/.gitignore:2:pattern2\tduck2",
+        "proper_file:3:pattern3\tgoose",
+        "not_actually_a.gitignore:4:pattern4\tduckling",
+        "Windows\\file_system\\lol\\.gitignore:5:pattern5\tMicrosoft_pls",
+      ].join("\n"))
+
+      expect(CodeOwners.git_owner_info(["/lib/*"])).to eq(
+        [
+          ["3", "pattern3", "goose"],
+          ["4", "pattern4", "duckling"],
         ]
       )
     end

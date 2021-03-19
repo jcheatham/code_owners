@@ -65,10 +65,10 @@ module CodeOwners
     end
 
     def git_owner_info(patterns)
-      make_utf8(raw_git_owner_info(patterns)).lines.map do |info|
-        _, _exfile, line, pattern, file = info.strip.match(/^(.*):(\d*):(.*)\t(.*)$/).to_a
-        [line, pattern, file]
-      end
+      make_utf8(raw_git_owner_info(patterns)).lines.map { |info|
+        _, exfile, line, pattern, file = info.strip.match(/^(.*):(\d*):(.*)\t(.*)$/).to_a
+        [line, pattern, file] unless exfile =~ /(^|[\/\\])\.gitignore$/
+      }.compact
     end
 
     # expects an array of gitignore compliant patterns
