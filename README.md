@@ -5,6 +5,12 @@ Install
 
     gem install code_owners
 
+Requirements
+============
+
+* Ruby
+* Git
+
 Usage
 =====
 
