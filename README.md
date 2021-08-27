@@ -30,12 +30,12 @@ Development
 
 Maybe put it in a cleanliness test, like:
 
-```
-  it "does not introduce new unowned files" do
-    unowned_files = CodeOwners.ownerships.select { |f| f[:owner] == "UNOWNED" }
-    # this number should only decrease, never increase!
-    assert_equal 12345, unowned_files.count, "Claim ownership of your new files in .github/CODEOWNERS to fix this test!"
-  end
+```ruby
+it "does not introduce new unowned files" do
+unowned_files = CodeOwners.ownerships.select { |f| f[:owner] == CodeOwners::NO_OWNER }
+# this number should only decrease, never increase!
+assert_equal 12345, unowned_files.count, "Claim ownership of your new files in .github/CODEOWNERS to fix this test!"
+end
 ```
 
 Author
