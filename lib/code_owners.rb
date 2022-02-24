@@ -19,6 +19,10 @@ module CodeOwners
       puts message
     end
 
+    def file_ownerships
+      Hash[ ownerships.map { |o| [o[:file], o] } ]
+    end
+
     def ownerships
       patterns = pattern_owners
       git_owner_info(patterns.map { |p| p[0] }).map do |line, pattern, file|

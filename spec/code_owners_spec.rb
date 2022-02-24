@@ -2,6 +2,23 @@ require 'code_owners'
 require 'tmpdir'
 
 RSpec.describe CodeOwners do |rspec|
+  describe ".file_ownerships" do
+    it "returns a hash of ownerships keyed by file path" do
+      expect(CodeOwners).to receive(:ownerships).and_return(
+        [
+          { file: "pat2file", owner: "own2", line: "2", pattern: "pat2*" },
+          { file: "unowned/file", owner: "UNOWNED", line: nil, pattern: nil }
+        ]
+      )
+      expect(CodeOwners.file_ownerships).to eq(
+        {
+          "pat2file" => { file: "pat2file", owner: "own2", line: "2", pattern: "pat2*" },
+          "unowned/file" => { file: "unowned/file", owner: "UNOWNED", line: nil, pattern: nil }
+        }
+      )
+    end
+  end
+
   describe ".ownerships" do
     it "assigns owners to things" do
       expect(CodeOwners).to receive(:pattern_owners).and_return([["pat1", "own1"], ["pat2*", "own2"], ["pat3", "own3"]])
@@ -29,7 +46,7 @@ RSpec.describe CodeOwners do |rspec|
 lib/* @jcheatham
 some/path/** @someoneelse
 other/path/* @someoneelse @anotherperson
-invalid/codeowners/line 
+invalid/code owners/line
      @AnotherInvalidLine
 #comment-line (empty line next)
 
@@ -60,7 +77,7 @@ CODEOWNERS
 
     it "prints validation errors and skips lines that aren't the expected format" do
       expect(CodeOwners).to receive(:current_repo_path).and_return(@d)
-      expect(CodeOwners).to receive(:log).with("Parse error line 4: \"invalid/codeowners/line \"")
+      expect(CodeOwners).to receive(:log).with("Parse error line 4: \"invalid/code owners/line\"")
       expect(CodeOwners).to receive(:log).with("Parse error line 5: \"     @AnotherInvalidLine\"")
       pattern_owners = CodeOwners.pattern_owners
       expect(pattern_owners).not_to include(["", "@AnotherInvalidLine"])
