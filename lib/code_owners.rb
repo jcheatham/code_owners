@@ -77,7 +77,7 @@ module CodeOwners
       Tempfile.open('codeowner_patterns') do |file|
         file.write(patterns.join("\n"))
         file.rewind
-        `cd #{current_repo_path} && git -c \"core.quotepath=off\" ls-files | xargs -- git -c \"core.quotepath=off\" -c \"core.excludesfile=#{file.path}\" check-ignore --no-index -v -n`
+        `cd #{current_repo_path} && git -c \"core.quotepath=off\" ls-files -z | xargs -0 -- git -c \"core.quotepath=off\" -c \"core.excludesfile=#{file.path}\" check-ignore --no-index -v -n`
       end
     end
 

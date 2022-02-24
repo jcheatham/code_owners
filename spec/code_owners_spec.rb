@@ -86,6 +86,13 @@ CODEOWNERS
       expect(raw_ownership.size).to be >= 1
       expect(raw_ownership).to match(/^(?:.*:\d*:.*\t.*\n)+$/)
     end
+
+    context "when path includes a space" do
+      it "returns the path in single line" do
+        raw_ownership = CodeOwners.raw_git_owner_info(["/spec/files/*"])
+        expect(raw_ownership).to match(/.+:\d+:.+\tspec\/files\/file name\.txt\n/)
+      end
+    end
   end
 
   describe "code_owners" do
