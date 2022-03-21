@@ -5,14 +5,15 @@ module CodeOwners
   NO_OWNER = 'UNOWNED'
   class << self
 
-    # github's CODEOWNERS rules (https://help.github.com/articles/about-codeowners/) are allegedly based on the gitignore format.
-
+    # helper function to create the lookup for when we have a file and want to find its owner
     def file_ownerships
       Hash[ ownerships.map { |o| [o[:file], o] } ]
     end
 
+    # this maps the collection of ownership patterns and owners to actual files
     def ownerships
-      patterns = pattern_owners
+      codeowner_path = search_codeowners_file
+      patterns = pattern_owners(File.read(codeowner_path))
       git_owner_info(patterns.map { |p| p[0] }).map do |line, pattern, file|
         if line.empty?
           { file: file, owner: NO_OWNER, line: nil, pattern: nil }
@@ -29,10 +30,9 @@ module CodeOwners
 
     # read the github file and spit out a slightly formatted list of patterns and their owners
     # Empty/invalid/commented lines are still included in order to preserve line numbering
-    def pattern_owners
-      codeowner_path = search_codeowners_file
+    def pattern_owners(codeowner_data)
       patterns = []
-      File.read(codeowner_path).split("\n").each_with_index { |line, i|
+      codeowner_data.split("\n").each_with_index do |line, i|
         path_owner = line.split(/\s+@/, 2)
         if line.match(/^\s*(?:#.*)?$/)
           patterns.push ['', ''] # Comment/empty line
@@ -43,8 +43,8 @@ module CodeOwners
           path_owner[1] = '@'+path_owner[1]
           patterns.push path_owner
         end
-      }
-      return patterns
+      end
+      patterns
     end
 
     def git_owner_info(patterns)

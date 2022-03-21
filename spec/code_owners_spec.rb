@@ -38,48 +38,41 @@ RSpec.describe CodeOwners do |rspec|
   end
 
   describe ".pattern_owners" do
-    around(:each) do |example|
-      Dir.mktmpdir { |d|
-        @d = d
-        f = File.new(File.join(d, 'CODEOWNERS'), 'w+')
-        f.write <<-CODEOWNERS
+    before do
+      @data = <<-CODEOWNERS
 lib/* @jcheatham
 some/path/** @someoneelse
 other/path/* @someoneelse @anotherperson
 invalid/code owners/line
      @AnotherInvalidLine
 #comment-line (empty line next)
+here/is/a/valid/path.txt   @jcheatham
 
 # another comment line
 CODEOWNERS
-        f.close
-        example.run
-      }
     end
 
     it "returns a list of patterns and owners" do
-      expect(CodeOwners).to receive(:current_repo_path).and_return(@d)
       expect(CodeOwners).to receive(:log).twice
-      pattern_owners = CodeOwners.pattern_owners
+      pattern_owners = CodeOwners.pattern_owners(@data)
       expect(pattern_owners).to include(["other/path/*", "@someoneelse @anotherperson"])
     end
 
-    it "works when invoked in a repo's subdirectory" do
-      expect(CodeOwners).to receive(:current_repo_path).and_return(@d)
-      expect(CodeOwners).to receive(:log).twice
-      subdir = File.join(@d, 'spec')
-      Dir.mkdir(subdir)
-      Dir.chdir(subdir) do
-        pattern_owners = CodeOwners.pattern_owners
-        expect(pattern_owners).to include(["lib/*", "@jcheatham"])
-      end
-    end
+    #it "works when invoked in a repo's subdirectory" do
+      #expect(CodeOwners).to receive(:current_repo_path).and_return(@d)
+      #expect(CodeOwners).to receive(:log).twice
+      #subdir = File.join(@d, 'spec')
+      #Dir.mkdir(subdir)
+      #Dir.chdir(subdir) do
+        #pattern_owners = CodeOwners.pattern_owners(@data)
+        #expect(pattern_owners).to include(["lib/*", "@jcheatham"])
+      #end
+    #end
 
     it "prints validation errors and skips lines that aren't the expected format" do
-      expect(CodeOwners).to receive(:current_repo_path).and_return(@d)
       expect(CodeOwners).to receive(:log).with("Parse error line 4: \"invalid/code owners/line\"")
       expect(CodeOwners).to receive(:log).with("Parse error line 5: \"     @AnotherInvalidLine\"")
-      pattern_owners = CodeOwners.pattern_owners
+      pattern_owners = CodeOwners.pattern_owners(@data)
       expect(pattern_owners).not_to include(["", "@AnotherInvalidLine"])
       expect(pattern_owners).to include(["", ""])
     end

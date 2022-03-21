@@ -1,5 +1,7 @@
 Utility gem for .github/CODEOWNERS introspection
 
+GitHub's [CODEOWNERS rules](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners) are allegedly based on the gitignore format with a few small exceptions.
+
 Install
 =======
 
@@ -32,9 +34,9 @@ Maybe put it in a cleanliness test, like:
 
 ```ruby
 it "does not introduce new unowned files" do
-unowned_files = CodeOwners.ownerships.select { |f| f[:owner] == CodeOwners::NO_OWNER }
-# this number should only decrease, never increase!
-assert_equal 12345, unowned_files.count, "Claim ownership of your new files in .github/CODEOWNERS to fix this test!"
+  unowned_files = CodeOwners.ownerships.select { |f| f[:owner] == CodeOwners::NO_OWNER }
+  # this number should only decrease, never increase!
+  assert_equal 12345, unowned_files.count, "Claim ownership of your new files in .github/CODEOWNERS to fix this test!"
 end
 ```
 
