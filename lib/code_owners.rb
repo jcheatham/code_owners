@@ -6,18 +6,6 @@ module CodeOwners
   class << self
 
     # github's CODEOWNERS rules (https://help.github.com/articles/about-codeowners/) are allegedly based on the gitignore format.
-    # but you can't tell ls-files to ignore tracked files via an arbitrary pattern file
-    # so we need to jump through some hacky git-fu hoops
-    #
-    # -c "core.excludesfiles=somefile" -> tells git to use this as our gitignore pattern source
-    # check-ignore -> debug gitignore / exclude files
-    # --no-index -> don't look in the index when checking, can be used to debug why a path became tracked
-    # -v -> verbose, outputs details about the matching pattern (if any) for each given pathname
-    # -n -> non-matching, shows given paths which don't match any pattern
-
-    def log(message)
-      puts message
-    end
 
     def file_ownerships
       Hash[ ownerships.map { |o| [o[:file], o] } ]
@@ -37,15 +25,6 @@ module CodeOwners
           }
         end
       end
-    end
-
-    def search_codeowners_file
-      paths = ["CODEOWNERS", "docs/CODEOWNERS", ".github/CODEOWNERS"]
-      for path in paths
-        current_file_path = File.join(current_repo_path, path)
-        return current_file_path if File.exist?(current_file_path)
-      end
-      abort("[ERROR] CODEOWNERS file does not exist.")
     end
 
     # read the github file and spit out a slightly formatted list of patterns and their owners
@@ -75,14 +54,40 @@ module CodeOwners
       end
     end
 
-    # expects an array of gitignore compliant patterns
-    # generates a check-ignore formatted string for each file in the repo
+    # IN: an array of gitignore* check-ignore compliant patterns
+    # OUT: a check-ignore formatted string for each file in the repo
+    #
+    # * https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners#syntax-exceptions
+    # sadly you can't tell ls-files to ignore tracked files via an arbitrary pattern file
+    # so we jump through some hacky git-fu hoops
+    #
+    # -c "core.quotepath=off" ls-files -z   # prevent quoting the path and null-terminate each line to assist with matching stuff with spaces
+    # -c "core.excludesfiles=somefile"      # tells git to use this as our gitignore pattern source
+    # check-ignore                          # debug gitignore / exclude files
+    # --no-index                            # don't look in the index when checking, can be used to debug why a path became tracked
+    # -v                                    # verbose, outputs details about the matching pattern (if any) for each given pathname
+    # -n                                    # non-matching, shows given paths which don't match any pattern
     def raw_git_owner_info(patterns)
       Tempfile.open('codeowner_patterns') do |file|
         file.write(patterns.join("\n"))
         file.rewind
         `cd #{current_repo_path} && git -c \"core.quotepath=off\" ls-files -z | xargs -0 -- git -c \"core.quotepath=off\" -c \"core.excludesfile=#{file.path}\" check-ignore --no-index -v -n`
       end
+    end
+
+    # https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners#codeowners-file-location
+    # To use a CODEOWNERS file, create a new file called CODEOWNERS in the root, docs/, or .github/ directory of the repository, in the branch where you'd like to add the code owners.
+    def search_codeowners_file
+      paths = ["CODEOWNERS", "docs/CODEOWNERS", ".github/CODEOWNERS"]
+      for path in paths
+        current_file_path = File.join(current_repo_path, path)
+        return current_file_path if File.exist?(current_file_path)
+      end
+      abort("[ERROR] CODEOWNERS file does not exist.")
+    end
+
+    def log(message)
+      puts message
     end
 
     private
