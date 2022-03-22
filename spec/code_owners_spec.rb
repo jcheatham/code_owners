@@ -43,35 +43,49 @@ RSpec.describe CodeOwners do |rspec|
 lib/* @jcheatham
 some/path/** @someoneelse
 other/path/* @someoneelse @anotherperson
+
+this path/has spaces.txt        @spacelover spacer@example.com
+/this also has spaces.txt        spacer@example.com @spacelover
+
 invalid/code owners/line
      @AnotherInvalidLine
 #comment-line (empty line next)
+!this/is/unsupported.txt   @foo
 here/is/a/valid/path.txt   @jcheatham
 
-# another comment line
+#/another/comment/line @nobody
 CODEOWNERS
     end
 
     it "returns a list of patterns and owners" do
-      expect(CodeOwners).to receive(:log).twice
-      pattern_owners = CodeOwners.pattern_owners(@data)
-      expect(pattern_owners).to include(["other/path/*", "@someoneelse @anotherperson"])
+      expected_results = [
+        ["lib/*", "@jcheatham"],
+        ["some/path/**", "@someoneelse"],
+        ["other/path/*", "@someoneelse @anotherperson"],
+        ["", ""],
+        ["this path/has spaces.txt", "@spacelover spacer@example.com"],
+        ["/this also has spaces.txt", "spacer@example.com @spacelover"],
+        ["", ""],
+        ["", ""],
+        ["", ""],
+        ["", ""],
+        ["", ""],
+        ["here/is/a/valid/path.txt", "@jcheatham"],
+        ["", ""],
+        ["", ""]]
+
+      expect(CodeOwners).to receive(:log).exactly(3).times
+      results = CodeOwners.pattern_owners(@data)
+      # do this to compare elements with much nicer failure hints
+      expect(results).to match_array(expected_results)
+      # but do this to guarantee order
+      expect(results).to eq(expected_results)
     end
 
-    #it "works when invoked in a repo's subdirectory" do
-      #expect(CodeOwners).to receive(:current_repo_path).and_return(@d)
-      #expect(CodeOwners).to receive(:log).twice
-      #subdir = File.join(@d, 'spec')
-      #Dir.mkdir(subdir)
-      #Dir.chdir(subdir) do
-        #pattern_owners = CodeOwners.pattern_owners(@data)
-        #expect(pattern_owners).to include(["lib/*", "@jcheatham"])
-      #end
-    #end
-
     it "prints validation errors and skips lines that aren't the expected format" do
-      expect(CodeOwners).to receive(:log).with("Parse error line 4: \"invalid/code owners/line\"")
-      expect(CodeOwners).to receive(:log).with("Parse error line 5: \"     @AnotherInvalidLine\"")
+      expect(CodeOwners).to receive(:log).with("Parse error line 8: \"invalid/code owners/line\"")
+      expect(CodeOwners).to receive(:log).with("Parse error line 9: \"     @AnotherInvalidLine\"")
+      expect(CodeOwners).to receive(:log).with("Parse error line 11: \"!this/is/unsupported.txt   @foo\"")
       pattern_owners = CodeOwners.pattern_owners(@data)
       expect(pattern_owners).not_to include(["", "@AnotherInvalidLine"])
       expect(pattern_owners).to include(["", ""])

@@ -2,7 +2,10 @@ require "code_owners/version"
 require "tempfile"
 
 module CodeOwners
+
   NO_OWNER = 'UNOWNED'
+  CODEOWNER_PATTERN = /(.*?)\s+((?:[^\s]*@[^\s]+\s*)+)/
+
   class << self
 
     # helper function to create the lookup for when we have a file and want to find its owner
@@ -33,15 +36,22 @@ module CodeOwners
     def pattern_owners(codeowner_data)
       patterns = []
       codeowner_data.split("\n").each_with_index do |line, i|
-        path_owner = line.split(/\s+@/, 2)
-        if line.match(/^\s*(?:#.*)?$/)
-          patterns.push ['', ''] # Comment/empty line
-        elsif path_owner.length != 2 || (path_owner[0].empty? && !path_owner[1].empty?)
+        stripped_line = line.strip
+        if stripped_line == "" || stripped_line.start_with?("#")
+          patterns << ['', ''] # Comment / empty line
+
+        elsif stripped_line.start_with?("!")
+          # unsupported per github spec
           log "Parse error line #{(i+1).to_s}: \"#{line}\""
-          patterns.push ['', ''] # Invalid line
+          patterns << ['', '']
+
+        elsif stripped_line.match(CODEOWNER_PATTERN)
+          patterns << [$1, $2]
+
         else
-          path_owner[1] = '@'+path_owner[1]
-          patterns.push path_owner
+          log "Parse error line #{(i+1).to_s}: \"#{line}\""
+          patterns << ['', '']
+
         end
       end
       patterns
