@@ -31,7 +31,7 @@ OptionParser.new do |opts|
 end.parse!
 
 unowned_error = false
-CodeOwners.ownerships.each do |ownership_status|
+CodeOwners.ownerships(options).each do |ownership_status|
   owner_info = ownership_status[:owner].dup
   if owner_info != CodeOwners::NO_OWNER
     next if options[:unowned]

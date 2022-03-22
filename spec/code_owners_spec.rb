@@ -57,6 +57,11 @@ here/is/a/valid/path.txt   @jcheatham
 CODEOWNERS
     end
 
+    it "returns an empty array given an empty string" do
+      results = CodeOwners.pattern_owners("")
+      expect(results).to eq([])
+    end
+
     it "returns a list of patterns and owners" do
       expected_results = [
         ["lib/*", "@jcheatham"],

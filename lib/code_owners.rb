@@ -9,12 +9,12 @@ module CodeOwners
   class << self
 
     # helper function to create the lookup for when we have a file and want to find its owner
-    def file_ownerships
+    def file_ownerships(opts = {})
       Hash[ ownerships.map { |o| [o[:file], o] } ]
     end
 
     # this maps the collection of ownership patterns and owners to actual files
-    def ownerships
+    def ownerships(opts = {})
       codeowner_path = search_codeowners_file
       patterns = pattern_owners(File.read(codeowner_path))
       git_owner_info(patterns.map { |p| p[0] }).map do |line, pattern, file|
