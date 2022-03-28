@@ -185,4 +185,16 @@ CODEOWNERS
       expect(`bin#{File::SEPARATOR}code_owners --version`).to match VERSION_REGEX
     end
   end
+
+  # yoinked from rspec match_array
+  def array_diff(array_1, array_2)
+    difference = array_1.dup
+    array_2.each do |element|
+      if index = difference.index(element)
+        difference.delete_at(index)
+      end
+    end
+    difference
+  end
+
 end
