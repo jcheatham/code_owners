@@ -124,6 +124,42 @@ CODEOWNERS
     end
   end
 
+  describe ".search_codeowners_file" do
+    context "using git" do
+      it "works when in a sub-directory" do
+        Dir.chdir("lib") do
+          result = CodeOwners.search_codeowners_file
+          # assuming cloned to a directory named after the repo
+          expect(result).to end_with("code_owners/.github/CODEOWNERS")
+        end
+      end
+
+      it "fails when not in a repo" do
+        Dir.chdir("/") do
+          # this should also print out an error to stderror along the lines of
+          # fatal: not a git repository (or any of the parent directories): .git
+          expect { CodeOwners.search_codeowners_file }.to raise_error(RuntimeError)
+        end
+      end
+    end
+
+    context "not using git" do
+      it "works when in a sub-directory" do
+        Dir.chdir("lib") do
+          result = CodeOwners.search_codeowners_file(no_git: true)
+          # assuming cloned to a directory named after the repo
+          expect(result).to end_with("code_owners/.github/CODEOWNERS")
+        end
+      end
+
+      it "fails when not in a repo" do
+        Dir.chdir("/") do
+          expect { CodeOwners.search_codeowners_file(no_git: true) }.to raise_error(RuntimeError)
+        end
+      end
+    end
+  end
+
   describe "code_owners" do
     VERSION_REGEX = /Version: \d+\.\d+\.\d+(-[a-z0-9]+)?/i
 

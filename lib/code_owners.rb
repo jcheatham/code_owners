@@ -5,6 +5,7 @@ module CodeOwners
 
   NO_OWNER = 'UNOWNED'
   CODEOWNER_PATTERN = /(.*?)\s+((?:[^\s]*@[^\s]+\s*)+)/
+  POTENTIAL_LOCATIONS = ["CODEOWNERS", "docs/CODEOWNERS", ".github/CODEOWNERS"]
 
   class << self
 
@@ -15,7 +16,7 @@ module CodeOwners
 
     # this maps the collection of ownership patterns and owners to actual files
     def ownerships(opts = {})
-      codeowner_path = search_codeowners_file
+      codeowner_path = search_codeowners_file(opts)
       patterns = pattern_owners(File.read(codeowner_path))
       git_owner_info(patterns.map { |p| p[0] }).map do |line, pattern, file|
         if line.empty?
@@ -87,13 +88,29 @@ module CodeOwners
 
     # https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners#codeowners-file-location
     # To use a CODEOWNERS file, create a new file called CODEOWNERS in the root, docs/, or .github/ directory of the repository, in the branch where you'd like to add the code owners.
-    def search_codeowners_file
-      paths = ["CODEOWNERS", "docs/CODEOWNERS", ".github/CODEOWNERS"]
-      for path in paths
-        current_file_path = File.join(current_repo_path, path)
-        return current_file_path if File.exist?(current_file_path)
+
+    # if we have access to git, use that to figure out our current repo path and look in there for codeowners
+    # if we don't, this function will attempt to find it while walking back up the directory tree
+    def search_codeowners_file(opts = {})
+      if opts[:codeowner_path]
+        return opts[:codeowner_path] if File.exist?(opts[:codeowner_path])
+      elsif opts[:no_git]
+        path = Dir.pwd.split(File::SEPARATOR)
+        while !path.empty?
+          POTENTIAL_LOCATIONS.each do |pl|
+            current_file_path = File.join(path, pl)
+            return current_file_path if File.exist?(current_file_path)
+          end
+          path.pop
+        end
+      else
+        path = current_repo_path
+        POTENTIAL_LOCATIONS.each do |pl|
+          current_file_path = File.join(path, pl)
+          return current_file_path if File.exist?(current_file_path)
+        end
       end
-      abort("[ERROR] CODEOWNERS file does not exist.")
+      raise("[ERROR] CODEOWNERS file does not exist.")
     end
 
     def log(message)

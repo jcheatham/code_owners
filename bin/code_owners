@@ -24,6 +24,9 @@ OptionParser.new do |opts|
   opts.on('-e', '--error-unowned', TrueClass, 'Exit with error status if any files are unowned') do |e|
     options[:error_unowned] = e
   end
+  opts.on('-n', '--no-git', TrueClass, '[experimental] Use a git-free, pure ruby based implementation') do |n|
+     options[:no_git] = n
+   end
   opts.on('-v', '--version', TrueClass, 'Display the version of the gem') do |_|
     puts "Version: #{CodeOwners::VERSION}"
     exit 0
