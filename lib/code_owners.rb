@@ -1,5 +1,6 @@
 require "code_owners/version"
 require "tempfile"
+require "pathspec"
 
 module CodeOwners
 
@@ -142,6 +143,30 @@ module CodeOwners
         end
       end
       raise("[ERROR] CODEOWNERS file does not exist.")
+    end
+
+    def files_to_own(opts = {})
+      # glob all files
+      all_files_pattern = File.join("**","**")
+
+      # optionally prefix with list of directories to scope down potential evaluation space
+      if opts[:scoped_dirs]
+        all_files_pattern = File.join("{#{opts[:scoped_dirs].join(",")}}", all_files_pattern)
+      end
+
+      all_files = Dir.glob(all_files_pattern, File::FNM_DOTMATCH)
+
+      # clean it up
+      all_files.reject!{|f| f.start_with?(".git/") || File.directory?(f) }
+      all_files.map!{|f| "/#{f}" }.sort!
+
+      # filter out ignores if we have them
+      opts[:ignores]&.each do |ignore|
+        specs = PathSpec.from_filename(ignore)
+        all_files.reject! { |f| specs.match_path(f) }
+      end
+
+      all_files
     end
 
     def make_utf8(input)

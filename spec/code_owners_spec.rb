@@ -174,6 +174,21 @@ CODEOWNERS
     end
   end
 
+  describe ".files_to_own" do
+    it "returns all files" do
+      result = CodeOwners.send(:files_to_own)
+      expect(result).to include('/Gemfile')
+      expect(result).to include('/lib/code_owners.rb')
+      expect(result).to include('/spec/files/foo/fake_gem.gem')
+    end
+
+    it "removes ignored files" do
+      result = CodeOwners.send(:files_to_own, ignores: [".gitignore"])
+      expect(result).to include('/spec/files/foo/bar/baz/baz.txt')
+      expect(result).not_to include('/spec/files/foo/fake_gem.gem')
+    end
+  end
+
   describe "code_owners" do
     VERSION_REGEX = /Version: \d+\.\d+\.\d+(-[a-z0-9]+)?/i
 
