@@ -124,13 +124,27 @@ CODEOWNERS
     end
   end
 
-  describe ".search_codeowners_file" do
+  describe ".codeowners_data" do
+    context "when passed predefined data" do
+      it "returns the data" do
+        result = CodeOwners.send(:codeowners_data, codeowner_data: "foo")
+        expect(result).to eq("foo")
+      end
+    end
+
+    context "when passed a file path" do
+      it "loads the file" do
+        result = CodeOwners.send(:codeowners_data, codeowner_path: ".github/CODEOWNERS")
+        expect(result).to start_with("# This is a CODEOWNERS file.")
+      end
+    end
+
     context "using git" do
       it "works when in a sub-directory" do
         Dir.chdir("lib") do
-          result = CodeOwners.search_codeowners_file
+          result = CodeOwners.send(:codeowners_data)
           # assuming cloned to a directory named after the repo
-          expect(result).to end_with("code_owners/.github/CODEOWNERS")
+          expect(result).to start_with("# This is a CODEOWNERS file.")
         end
       end
 
@@ -138,7 +152,7 @@ CODEOWNERS
         Dir.chdir("/") do
           # this should also print out an error to stderror along the lines of
           # fatal: not a git repository (or any of the parent directories): .git
-          expect { CodeOwners.search_codeowners_file }.to raise_error(RuntimeError)
+          expect { CodeOwners.send(:codeowners_data) }.to raise_error(RuntimeError)
         end
       end
     end
@@ -146,15 +160,15 @@ CODEOWNERS
     context "not using git" do
       it "works when in a sub-directory" do
         Dir.chdir("lib") do
-          result = CodeOwners.search_codeowners_file(no_git: true)
+          result = CodeOwners.send(:codeowners_data, no_git: true)
           # assuming cloned to a directory named after the repo
-          expect(result).to end_with("code_owners/.github/CODEOWNERS")
+          expect(result).to start_with("# This is a CODEOWNERS file.")
         end
       end
 
       it "fails when not in a repo" do
         Dir.chdir("/") do
-          expect { CodeOwners.search_codeowners_file(no_git: true) }.to raise_error(RuntimeError)
+          expect { CodeOwners.send(:codeowners_data, no_git: true) }.to raise_error(RuntimeError)
         end
       end
     end

@@ -16,14 +16,14 @@ module CodeOwners
 
     # this maps the collection of ownership patterns and owners to actual files
     def ownerships(opts = {})
-      codeowner_path = search_codeowners_file(opts)
-      patterns = pattern_owners(File.read(codeowner_path), opts)
+      patterns = pattern_owners(codeowners_data(opts), opts)
       if opts[:no_git]
         ownerships_by_ruby(patterns, opts)
       else
         ownerships_by_gitignore(patterns, opts)
       end
     end
+
 
     ####################
     # gitignore approach
@@ -109,20 +109,28 @@ module CodeOwners
       patterns
     end
 
+    def log(message)
+      puts message
+    end
+
+    private
+
     # https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners#codeowners-file-location
     # To use a CODEOWNERS file, create a new file called CODEOWNERS in the root, docs/, or .github/ directory of the repository, in the branch where you'd like to add the code owners.
 
     # if we have access to git, use that to figure out our current repo path and look in there for codeowners
     # if we don't, this function will attempt to find it while walking back up the directory tree
-    def search_codeowners_file(opts = {})
-      if opts[:codeowner_path]
-        return opts[:codeowner_path] if File.exist?(opts[:codeowner_path])
+    def codeowners_data(opts = {})
+      if opts[:codeowner_data]
+        return opts[:codeowner_data]
+      elsif opts[:codeowner_path]
+        return File.read(opts[:codeowner_path]) if File.exist?(opts[:codeowner_path])
       elsif opts[:no_git]
         path = Dir.pwd.split(File::SEPARATOR)
         while !path.empty?
           POTENTIAL_LOCATIONS.each do |pl|
             current_file_path = File.join(path, pl)
-            return current_file_path if File.exist?(current_file_path)
+            return File.read(current_file_path) if File.exist?(current_file_path)
           end
           path.pop
         end
@@ -130,17 +138,11 @@ module CodeOwners
         path = current_repo_path
         POTENTIAL_LOCATIONS.each do |pl|
           current_file_path = File.join(path, pl)
-          return current_file_path if File.exist?(current_file_path)
+          return File.read(current_file_path) if File.exist?(current_file_path)
         end
       end
       raise("[ERROR] CODEOWNERS file does not exist.")
     end
-
-    def log(message)
-      puts message
-    end
-
-    private
 
     def make_utf8(input)
       input.force_encoding(Encoding::UTF_8)
