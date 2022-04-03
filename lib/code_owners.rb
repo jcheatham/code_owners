@@ -2,29 +2,22 @@ require "code_owners/version"
 require "tempfile"
 
 module CodeOwners
+
   NO_OWNER = 'UNOWNED'
+  CODEOWNER_PATTERN = /(.*?)\s+((?:[^\s]*@[^\s]+\s*)+)/
+  POTENTIAL_LOCATIONS = ["CODEOWNERS", "docs/CODEOWNERS", ".github/CODEOWNERS"]
+
   class << self
 
-    # github's CODEOWNERS rules (https://help.github.com/articles/about-codeowners/) are allegedly based on the gitignore format.
-    # but you can't tell ls-files to ignore tracked files via an arbitrary pattern file
-    # so we need to jump through some hacky git-fu hoops
-    #
-    # -c "core.excludesfiles=somefile" -> tells git to use this as our gitignore pattern source
-    # check-ignore -> debug gitignore / exclude files
-    # --no-index -> don't look in the index when checking, can be used to debug why a path became tracked
-    # -v -> verbose, outputs details about the matching pattern (if any) for each given pathname
-    # -n -> non-matching, shows given paths which don't match any pattern
-
-    def log(message)
-      puts message
-    end
-
-    def file_ownerships
+    # helper function to create the lookup for when we have a file and want to find its owner
+    def file_ownerships(opts = {})
       Hash[ ownerships.map { |o| [o[:file], o] } ]
     end
 
-    def ownerships
-      patterns = pattern_owners
+    # this maps the collection of ownership patterns and owners to actual files
+    def ownerships(opts = {})
+      codeowner_path = search_codeowners_file(opts)
+      patterns = pattern_owners(File.read(codeowner_path))
       git_owner_info(patterns.map { |p| p[0] }).map do |line, pattern, file|
         if line.empty?
           { file: file, owner: NO_OWNER, line: nil, pattern: nil }
@@ -39,33 +32,30 @@ module CodeOwners
       end
     end
 
-    def search_codeowners_file
-      paths = ["CODEOWNERS", "docs/CODEOWNERS", ".github/CODEOWNERS"]
-      for path in paths
-        current_file_path = File.join(current_repo_path, path)
-        return current_file_path if File.exist?(current_file_path)
-      end
-      abort("[ERROR] CODEOWNERS file does not exist.")
-    end
-
     # read the github file and spit out a slightly formatted list of patterns and their owners
     # Empty/invalid/commented lines are still included in order to preserve line numbering
-    def pattern_owners
-      codeowner_path = search_codeowners_file
+    def pattern_owners(codeowner_data)
       patterns = []
-      File.read(codeowner_path).split("\n").each_with_index { |line, i|
-        path_owner = line.split(/\s+@/, 2)
-        if line.match(/^\s*(?:#.*)?$/)
-          patterns.push ['', ''] # Comment/empty line
-        elsif path_owner.length != 2 || (path_owner[0].empty? && !path_owner[1].empty?)
+      codeowner_data.split("\n").each_with_index do |line, i|
+        stripped_line = line.strip
+        if stripped_line == "" || stripped_line.start_with?("#")
+          patterns << ['', ''] # Comment / empty line
+
+        elsif stripped_line.start_with?("!")
+          # unsupported per github spec
           log "Parse error line #{(i+1).to_s}: \"#{line}\""
-          patterns.push ['', ''] # Invalid line
+          patterns << ['', '']
+
+        elsif stripped_line.match(CODEOWNER_PATTERN)
+          patterns << [$1, $2]
+
         else
-          path_owner[1] = '@'+path_owner[1]
-          patterns.push path_owner
+          log "Parse error line #{(i+1).to_s}: \"#{line}\""
+          patterns << ['', '']
+
         end
-      }
-      return patterns
+      end
+      patterns
     end
 
     def git_owner_info(patterns)
@@ -75,14 +65,56 @@ module CodeOwners
       end
     end
 
-    # expects an array of gitignore compliant patterns
-    # generates a check-ignore formatted string for each file in the repo
+    # IN: an array of gitignore* check-ignore compliant patterns
+    # OUT: a check-ignore formatted string for each file in the repo
+    #
+    # * https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners#syntax-exceptions
+    # sadly you can't tell ls-files to ignore tracked files via an arbitrary pattern file
+    # so we jump through some hacky git-fu hoops
+    #
+    # -c "core.quotepath=off" ls-files -z   # prevent quoting the path and null-terminate each line to assist with matching stuff with spaces
+    # -c "core.excludesfiles=somefile"      # tells git to use this as our gitignore pattern source
+    # check-ignore                          # debug gitignore / exclude files
+    # --no-index                            # don't look in the index when checking, can be used to debug why a path became tracked
+    # -v                                    # verbose, outputs details about the matching pattern (if any) for each given pathname
+    # -n                                    # non-matching, shows given paths which don't match any pattern
     def raw_git_owner_info(patterns)
       Tempfile.open('codeowner_patterns') do |file|
         file.write(patterns.join("\n"))
         file.rewind
         `cd #{current_repo_path} && git -c \"core.quotepath=off\" ls-files -z | xargs -0 -- git -c \"core.quotepath=off\" -c \"core.excludesfile=#{file.path}\" check-ignore --no-index -v -n`
       end
+    end
+
+    # https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners#codeowners-file-location
+    # To use a CODEOWNERS file, create a new file called CODEOWNERS in the root, docs/, or .github/ directory of the repository, in the branch where you'd like to add the code owners.
+
+    # if we have access to git, use that to figure out our current repo path and look in there for codeowners
+    # if we don't, this function will attempt to find it while walking back up the directory tree
+    def search_codeowners_file(opts = {})
+      if opts[:codeowner_path]
+        return opts[:codeowner_path] if File.exist?(opts[:codeowner_path])
+      elsif opts[:no_git]
+        path = Dir.pwd.split(File::SEPARATOR)
+        while !path.empty?
+          POTENTIAL_LOCATIONS.each do |pl|
+            current_file_path = File.join(path, pl)
+            return current_file_path if File.exist?(current_file_path)
+          end
+          path.pop
+        end
+      else
+        path = current_repo_path
+        POTENTIAL_LOCATIONS.each do |pl|
+          current_file_path = File.join(path, pl)
+          return current_file_path if File.exist?(current_file_path)
+        end
+      end
+      raise("[ERROR] CODEOWNERS file does not exist.")
+    end
+
+    def log(message)
+      puts message
     end
 
     private

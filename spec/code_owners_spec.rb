@@ -38,48 +38,60 @@ RSpec.describe CodeOwners do |rspec|
   end
 
   describe ".pattern_owners" do
-    around(:each) do |example|
-      Dir.mktmpdir { |d|
-        @d = d
-        f = File.new(File.join(d, 'CODEOWNERS'), 'w+')
-        f.write <<-CODEOWNERS
+    before do
+      @data = <<-CODEOWNERS
 lib/* @jcheatham
 some/path/** @someoneelse
 other/path/* @someoneelse @anotherperson
+
+this path/has spaces.txt        @spacelover spacer@example.com
+/this also has spaces.txt        spacer@example.com @spacelover
+
 invalid/code owners/line
      @AnotherInvalidLine
 #comment-line (empty line next)
+!this/is/unsupported.txt   @foo
+here/is/a/valid/path.txt   @jcheatham
 
-# another comment line
+#/another/comment/line @nobody
 CODEOWNERS
-        f.close
-        example.run
-      }
+    end
+
+    it "returns an empty array given an empty string" do
+      results = CodeOwners.pattern_owners("")
+      expect(results).to eq([])
     end
 
     it "returns a list of patterns and owners" do
-      expect(CodeOwners).to receive(:current_repo_path).and_return(@d)
-      expect(CodeOwners).to receive(:log).twice
-      pattern_owners = CodeOwners.pattern_owners
-      expect(pattern_owners).to include(["other/path/*", "@someoneelse @anotherperson"])
-    end
+      expected_results = [
+        ["lib/*", "@jcheatham"],
+        ["some/path/**", "@someoneelse"],
+        ["other/path/*", "@someoneelse @anotherperson"],
+        ["", ""],
+        ["this path/has spaces.txt", "@spacelover spacer@example.com"],
+        ["/this also has spaces.txt", "spacer@example.com @spacelover"],
+        ["", ""],
+        ["", ""],
+        ["", ""],
+        ["", ""],
+        ["", ""],
+        ["here/is/a/valid/path.txt", "@jcheatham"],
+        ["", ""],
+        ["", ""]]
 
-    it "works when invoked in a repo's subdirectory" do
-      expect(CodeOwners).to receive(:current_repo_path).and_return(@d)
-      expect(CodeOwners).to receive(:log).twice
-      subdir = File.join(@d, 'spec')
-      Dir.mkdir(subdir)
-      Dir.chdir(subdir) do
-        pattern_owners = CodeOwners.pattern_owners
-        expect(pattern_owners).to include(["lib/*", "@jcheatham"])
-      end
+      expect(CodeOwners).to receive(:log).exactly(3).times
+      results = CodeOwners.pattern_owners(@data)
+      # do this to compare elements with much nicer failure hints
+      expect(results).to match_array(expected_results)
+      # but do this to guarantee order
+      expect(results).to eq(expected_results)
     end
 
     it "prints validation errors and skips lines that aren't the expected format" do
-      expect(CodeOwners).to receive(:current_repo_path).and_return(@d)
-      expect(CodeOwners).to receive(:log).with("Parse error line 4: \"invalid/code owners/line\"")
-      expect(CodeOwners).to receive(:log).with("Parse error line 5: \"     @AnotherInvalidLine\"")
-      pattern_owners = CodeOwners.pattern_owners
+      expect(CodeOwners).to receive(:log).with("Parse error line 8: \"invalid/code owners/line\"")
+      expect(CodeOwners).to receive(:log).with("Parse error line 9: \"     @AnotherInvalidLine\"")
+      expect(CodeOwners).to receive(:log).with("Parse error line 11: \"!this/is/unsupported.txt   @foo\"")
+      pattern_owners = CodeOwners.pattern_owners(@data)
       expect(pattern_owners).not_to include(["", "@AnotherInvalidLine"])
       expect(pattern_owners).to include(["", ""])
     end
@@ -108,6 +120,42 @@ CODEOWNERS
       it "returns the path in single line" do
         raw_ownership = CodeOwners.raw_git_owner_info(["/spec/files/*"])
         expect(raw_ownership).to match(/.+:\d+:.+\tspec\/files\/file name\.txt\n/)
+      end
+    end
+  end
+
+  describe ".search_codeowners_file" do
+    context "using git" do
+      it "works when in a sub-directory" do
+        Dir.chdir("lib") do
+          result = CodeOwners.search_codeowners_file
+          # assuming cloned to a directory named after the repo
+          expect(result).to end_with("code_owners/.github/CODEOWNERS")
+        end
+      end
+
+      it "fails when not in a repo" do
+        Dir.chdir("/") do
+          # this should also print out an error to stderror along the lines of
+          # fatal: not a git repository (or any of the parent directories): .git
+          expect { CodeOwners.search_codeowners_file }.to raise_error(RuntimeError)
+        end
+      end
+    end
+
+    context "not using git" do
+      it "works when in a sub-directory" do
+        Dir.chdir("lib") do
+          result = CodeOwners.search_codeowners_file(no_git: true)
+          # assuming cloned to a directory named after the repo
+          expect(result).to end_with("code_owners/.github/CODEOWNERS")
+        end
+      end
+
+      it "fails when not in a repo" do
+        Dir.chdir("/") do
+          expect { CodeOwners.search_codeowners_file(no_git: true) }.to raise_error(RuntimeError)
+        end
       end
     end
   end
