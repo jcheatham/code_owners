@@ -17,7 +17,18 @@ module CodeOwners
     # this maps the collection of ownership patterns and owners to actual files
     def ownerships(opts = {})
       codeowner_path = search_codeowners_file(opts)
-      patterns = pattern_owners(File.read(codeowner_path))
+      patterns = pattern_owners(File.read(codeowner_path), opts)
+      if opts[:no_git]
+        ownerships_by_ruby(patterns, opts)
+      else
+        ownerships_by_gitignore(patterns, opts)
+      end
+    end
+
+    ####################
+    # gitignore approach
+
+    def ownerships_by_gitignore(patterns, opts = {})
       git_owner_info(patterns.map { |p| p[0] }).map do |line, pattern, file|
         if line.empty?
           { file: file, owner: NO_OWNER, line: nil, pattern: nil }
@@ -30,32 +41,6 @@ module CodeOwners
           }
         end
       end
-    end
-
-    # read the github file and spit out a slightly formatted list of patterns and their owners
-    # Empty/invalid/commented lines are still included in order to preserve line numbering
-    def pattern_owners(codeowner_data)
-      patterns = []
-      codeowner_data.split("\n").each_with_index do |line, i|
-        stripped_line = line.strip
-        if stripped_line == "" || stripped_line.start_with?("#")
-          patterns << ['', ''] # Comment / empty line
-
-        elsif stripped_line.start_with?("!")
-          # unsupported per github spec
-          log "Parse error line #{(i+1).to_s}: \"#{line}\""
-          patterns << ['', '']
-
-        elsif stripped_line.match(CODEOWNER_PATTERN)
-          patterns << [$1, $2]
-
-        else
-          log "Parse error line #{(i+1).to_s}: \"#{line}\""
-          patterns << ['', '']
-
-        end
-      end
-      patterns
     end
 
     def git_owner_info(patterns)
@@ -84,6 +69,44 @@ module CodeOwners
         file.rewind
         `cd #{current_repo_path} && git -c \"core.quotepath=off\" ls-files -z | xargs -0 -- git -c \"core.quotepath=off\" -c \"core.excludesfile=#{file.path}\" check-ignore --no-index -v -n`
       end
+    end
+
+
+    ###############
+    # ruby approach
+
+    def ownerships_by_ruby(patterns, opts = {})
+    end
+
+
+
+    ##############
+    # helper stuff
+
+    # read the github file and spit out a slightly formatted list of patterns and their owners
+    # Empty/invalid/commented lines are still included in order to preserve line numbering
+    def pattern_owners(codeowner_data, opts = {})
+      patterns = []
+      codeowner_data.split("\n").each_with_index do |line, i|
+        stripped_line = line.strip
+        if stripped_line == "" || stripped_line.start_with?("#")
+          patterns << ['', ''] # Comment / empty line
+
+        elsif stripped_line.start_with?("!")
+          # unsupported per github spec
+          log "Parse error line #{(i+1).to_s}: \"#{line}\""
+          patterns << ['', '']
+
+        elsif stripped_line.match(CODEOWNER_PATTERN)
+          patterns << [$1, $2]
+
+        else
+          log "Parse error line #{(i+1).to_s}: \"#{line}\""
+          patterns << ['', '']
+
+        end
+      end
+      patterns
     end
 
     # https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners#codeowners-file-location
