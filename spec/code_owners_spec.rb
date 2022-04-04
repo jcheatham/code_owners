@@ -130,9 +130,9 @@ CODEOWNERS
     end
 
     it "prints validation errors and skips lines that aren't the expected format" do
-      expect(CodeOwners).to receive(:log).with("Parse error line 8: \"invalid/code owners/line\"")
-      expect(CodeOwners).to receive(:log).with("Parse error line 9: \"     @AnotherInvalidLine\"")
-      expect(CodeOwners).to receive(:log).with("Parse error line 11: \"!this/is/unsupported.txt   @foo\"")
+      expect(CodeOwners).to receive(:log).with("Parse error line 8: \"invalid/code owners/line\"", {})
+      expect(CodeOwners).to receive(:log).with("Parse error line 9: \"     @AnotherInvalidLine\"", {})
+      expect(CodeOwners).to receive(:log).with("Parse error line 11: \"!this/is/unsupported.txt   @foo\"", {})
       pattern_owners = CodeOwners.pattern_owners(@data)
       expect(pattern_owners).not_to include(["", "@AnotherInvalidLine"])
       expect(pattern_owners).to include(["", ""])

@@ -17,6 +17,7 @@ module CodeOwners
 
     # this maps the collection of ownership patterns and owners to actual files
     def ownerships(opts = {})
+      log("Calculating ownerships for #{opts.inspect}", opts)
       patterns = pattern_owners(codeowners_data(opts), opts)
       if opts[:no_git]
         files = files_to_own(opts)
@@ -111,14 +112,14 @@ module CodeOwners
 
         elsif stripped_line.start_with?("!")
           # unsupported per github spec
-          log "Parse error line #{(i+1).to_s}: \"#{line}\""
+          log("Parse error line #{(i+1).to_s}: \"#{line}\"", opts)
           patterns << ['', '']
 
         elsif stripped_line.match(CODEOWNER_PATTERN)
           patterns << [$1, $2]
 
         else
-          log "Parse error line #{(i+1).to_s}: \"#{line}\""
+          log("Parse error line #{(i+1).to_s}: \"#{line}\"", opts)
           patterns << ['', '']
 
         end
@@ -126,8 +127,8 @@ module CodeOwners
       patterns
     end
 
-    def log(message)
-      puts message
+    def log(message, opts = {})
+      puts message if opts[:log]
     end
 
     private
@@ -175,7 +176,7 @@ module CodeOwners
 
       # filter out ignores if we have them
       opts[:ignores]&.each do |ignore|
-        ignores = PathSpec.from_filename(ignore)
+        ignores = PathSpec.new(File.readlines(ignore, chomp: true).map{|i| i.end_with?("/*") ? "#{i}*" : i })
         all_files.reject! { |f| ignores.specs.any?{|p| p.match(f) } }
       end
 

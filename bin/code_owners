@@ -27,6 +27,9 @@ OptionParser.new do |opts|
   opts.on('-i', '--ignore FILE', String, 'A file of gitignore patterns to filter out of results, may be specified multiple times') do |i|
     options[:ignores] << i
   end
+  opts.on('-l', '--log', TrueClass, 'Log stuff') do |l|
+    options[:log] = l
+  end
   opts.on('-n', '--no-git', TrueClass, '[experimental] Use a git-free, pure ruby based implementation') do |n|
      options[:no_git] = n
    end
