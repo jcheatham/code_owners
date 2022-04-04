@@ -15,7 +15,7 @@ require 'code_owners'
 require 'code_owners/version'
 require 'optparse'
 
-options = {}
+options = {ignores: []}
 OptionParser.new do |opts|
   opts.banner = "usage: code_owners [options]"
   opts.on('-u', '--unowned', TrueClass, 'Display unowned files only') do |u|
@@ -23,6 +23,9 @@ OptionParser.new do |opts|
   end
   opts.on('-e', '--error-unowned', TrueClass, 'Exit with error status if any files are unowned') do |e|
     options[:error_unowned] = e
+  end
+  opts.on('-i', '--ignore FILE', String, 'A file of gitignore patterns to filter out of results, may be specified multiple times') do |i|
+    options[:ignores] << i
   end
   opts.on('-n', '--no-git', TrueClass, '[experimental] Use a git-free, pure ruby based implementation') do |n|
      options[:no_git] = n

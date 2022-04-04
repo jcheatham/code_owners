@@ -19,7 +19,8 @@ module CodeOwners
     def ownerships(opts = {})
       patterns = pattern_owners(codeowners_data(opts), opts)
       if opts[:no_git]
-        ownerships_by_ruby(patterns, opts)
+        files = files_to_own(opts)
+        ownerships_by_ruby(patterns, files, opts)
       else
         ownerships_by_gitignore(patterns, opts)
       end
@@ -76,7 +77,22 @@ module CodeOwners
     ###############
     # ruby approach
 
-    def ownerships_by_ruby(patterns, opts = {})
+    def ownerships_by_ruby(patterns, files, opts = {})
+      ownerships = files.map { |f| { file: f, owner: NO_OWNER, line: nil, pattern: nil } }
+
+      patterns.each_with_index do |(pattern, owner), i|
+        next if pattern == ""
+        pattern = pattern.gsub(/\/\*$/, "/**")
+        spec_pattern = PathSpec::GitIgnoreSpec.new(pattern)
+        ownerships.each do |o|
+          next unless spec_pattern.match(o[:file])
+          o[:owner]   = owner
+          o[:line]    = i+1
+          o[:pattern] = pattern
+        end
+      end
+
+      ownerships
     end
 
 
@@ -155,15 +171,12 @@ module CodeOwners
       end
 
       all_files = Dir.glob(all_files_pattern, File::FNM_DOTMATCH)
-
-      # clean it up
       all_files.reject!{|f| f.start_with?(".git/") || File.directory?(f) }
-      all_files.map!{|f| "/#{f}" }.sort!
 
       # filter out ignores if we have them
       opts[:ignores]&.each do |ignore|
-        specs = PathSpec.from_filename(ignore)
-        all_files.reject! { |f| specs.match_path(f) }
+        ignores = PathSpec.from_filename(ignore)
+        all_files.reject! { |f| ignores.specs.any?{|p| p.match(f) } }
       end
 
       all_files

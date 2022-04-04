@@ -1,5 +1,6 @@
 require 'code_owners'
 require 'tmpdir'
+require 'json'
 
 RSpec.describe CodeOwners do |rspec|
   describe ".file_ownerships" do
@@ -20,20 +21,61 @@ RSpec.describe CodeOwners do |rspec|
   end
 
   describe ".ownerships" do
-    it "assigns owners to things" do
-      expect(CodeOwners).to receive(:pattern_owners).and_return([["pat1", "own1"], ["pat2*", "own2"], ["pat3", "own3"]])
-      expect(CodeOwners).to receive(:git_owner_info).and_return(
-        [
-          ["2", "pat2*", "pat2file"],
-          ["", "", "unowned/file"]
-        ]
-      )
-      expect(CodeOwners.ownerships).to eq(
-        [
-          { file: "pat2file", owner: "own2", line: "2", pattern: "pat2*" },
-          { file: "unowned/file", owner: "UNOWNED", line: nil, pattern: nil }
-        ]
-      )
+    context "default path shelling out to git" do
+      it "assigns owners to things" do
+        expect(CodeOwners).to receive(:pattern_owners).and_return([["pat1", "own1"], ["pat2*", "own2"], ["pat3", "own3"]])
+        expect(CodeOwners).to receive(:git_owner_info).and_return(
+          [
+            ["2", "pat2*", "pat2file"],
+            ["", "", "unowned/file"]
+          ]
+        )
+        expect(CodeOwners.ownerships).to eq(
+          [
+            { file: "pat2file", owner: "own2", line: "2", pattern: "pat2*" },
+            { file: "unowned/file", owner: "UNOWNED", line: nil, pattern: nil }
+          ]
+        )
+      end
+    end
+
+    context "using no_git as an option" do
+      it "works" do
+        expect(CodeOwners).to receive(:pattern_owners).and_return([["foo", "own1"], ["foo*", "own2"], ["foo/**", "own3"]])
+        expect(CodeOwners).to receive(:files_to_own).and_return(["zip", "foo.rb", "foo/bar.rb", "foo/bar/baz.rb", "foo/bar/baz/meow.txt", "waffles"])
+        results = CodeOwners.ownerships(no_git: true)
+        expect(results).to match_array([
+          {:file=>"zip", :owner=>"UNOWNED", :line=>nil, :pattern=>nil},
+          {:file=>"foo.rb", :owner=>"own2", :line=>2, :pattern=>"foo*"},
+          {:file=>"foo/bar.rb", :owner=>"own3", :line=>3, :pattern=>"foo/**"},
+          {:file=>"foo/bar/baz.rb", :owner=>"own3", :line=>3, :pattern=>"foo/**"},
+          {:file=>"foo/bar/baz/meow.txt", :owner=>"own3", :line=>3, :pattern=>"foo/**"},
+          {:file=>"waffles", :owner=>"UNOWNED", :line=>nil, :pattern=>nil}
+        ])
+      end
+
+      it "behaves as expected of gitignore" do
+        mismatch_count = 0
+        permutations = JSON.parse(File.read("spec/permutations.json"))
+        puts "\nEvaluating #{permutations["permutations"].size} permutations, only printing the mismatches"
+
+        permutations["permutations"].each do |perm, git_matches|
+          expect(CodeOwners).to receive(:pattern_owners).and_return([[perm, "owner"]])
+          expect(CodeOwners).to receive(:files_to_own).and_return(permutations["all_files"])
+          ownerships = CodeOwners.ownerships(no_git: true)
+          spec_matches = ownerships.reject{|o| o[:pattern].nil? }.map{|o| o[:file] }.sort
+
+          diff1 = array_diff(spec_matches, git_matches)
+          diff2 = array_diff(git_matches, spec_matches)
+          unless diff1.empty? && diff2.empty?
+            mismatch_count += 1
+            puts "Permutation #{PathSpec::GitIgnoreSpec.new(perm).inspect}"
+            puts "gitignore matches: #{git_matches}"
+            puts "patchspec matches: #{spec_matches}\n\n"
+          end
+        end
+        puts "Counted #{mismatch_count} mismatches" if mismatch_count > 0
+      end
     end
   end
 
@@ -177,15 +219,15 @@ CODEOWNERS
   describe ".files_to_own" do
     it "returns all files" do
       result = CodeOwners.send(:files_to_own)
-      expect(result).to include('/Gemfile')
-      expect(result).to include('/lib/code_owners.rb')
-      expect(result).to include('/spec/files/foo/fake_gem.gem')
+      expect(result).to include('Gemfile')
+      expect(result).to include('lib/code_owners.rb')
+      expect(result).to include('spec/files/foo/fake_gem.gem')
     end
 
     it "removes ignored files" do
       result = CodeOwners.send(:files_to_own, ignores: [".gitignore"])
-      expect(result).to include('/spec/files/foo/bar/baz/baz.txt')
-      expect(result).not_to include('/spec/files/foo/fake_gem.gem')
+      expect(result).to include('spec/files/foo/bar/baz/baz.txt')
+      expect(result).not_to include('spec/files/foo/fake_gem.gem')
     end
   end
 
