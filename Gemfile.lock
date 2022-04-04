@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    code_owners (1.0.9)
+    code_owners (2.0.0)
       pathspec
       rake
 
