@@ -16,7 +16,18 @@ Requirements
 Usage
 =====
 
-    your/repo/path$ code_owners
+```
+your/repo/path$ code_owners --help
+usage: code_owners [options]
+    -u, --unowned         Display unowned files only
+    -e, --error-unowned   Exit with error status if any files are unowned
+    -i, --ignore FILE     A file of gitignore patterns to filter out of results, may be specified multiple times, only supported by -n option for now
+    -l, --log             Log stuff
+    -n, --no-git          [experimental] Use a git-free, pure ruby based implementation
+    -v, --version         Display the version of the gem
+```
+
+Several of those get transformed into option flags that get passed along to CodeOwners.ownerships, see [bin/codeowners](https://github.com/jcheatham/code_owners/blob/main/bin/code_owners)
 
 Output
 ======

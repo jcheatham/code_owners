@@ -1,15 +1,5 @@
 #!/usr/bin/env ruby
 
-unless system('git --version > /dev/null')
-  STDERR.puts 'Git does not appear to be installed.'
-  exit 2
-end
-
-unless system('git rev-parse --is-inside-work-tree > /dev/null')
-  STDERR.puts 'The current working directory must be a Git repo.'
-  exit 3
-end
-
 $LOAD_PATH << File.join(File.dirname(__FILE__), '..', 'lib')
 require 'code_owners'
 require 'code_owners/version'
@@ -24,7 +14,7 @@ OptionParser.new do |opts|
   opts.on('-e', '--error-unowned', TrueClass, 'Exit with error status if any files are unowned') do |e|
     options[:error_unowned] = e
   end
-  opts.on('-i', '--ignore FILE', String, 'A file of gitignore patterns to filter out of results, may be specified multiple times') do |i|
+  opts.on('-i', '--ignore FILE', String, 'A file of gitignore patterns to filter out of results, may be specified multiple times, only supported by -n option for now') do |i|
     options[:ignores] << i
   end
   opts.on('-l', '--log', TrueClass, 'Log stuff') do |l|
@@ -38,6 +28,18 @@ OptionParser.new do |opts|
     exit 0
   end
 end.parse!
+
+unless options[:no_git]
+  unless system('git --version > /dev/null')
+    STDERR.puts 'Git does not appear to be installed.'
+    exit 2
+  end
+
+  unless system('git rev-parse --is-inside-work-tree > /dev/null')
+    STDERR.puts 'The current working directory must be a Git repo.'
+    exit 3
+  end
+end
 
 unowned_error = false
 CodeOwners.ownerships(options).each do |ownership_status|

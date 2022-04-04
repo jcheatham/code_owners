@@ -12,7 +12,7 @@ module CodeOwners
 
     # helper function to create the lookup for when we have a file and want to find its owner
     def file_ownerships(opts = {})
-      Hash[ ownerships.map { |o| [o[:file], o] } ]
+      Hash[ ownerships(opts).map { |o| [o[:file], o] } ]
     end
 
     # this maps the collection of ownership patterns and owners to actual files
