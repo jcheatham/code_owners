@@ -1,0 +1,2920 @@
+{
+  "permutations": {
+    "**/**bar": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "**/**bar*": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "**/**bar**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "**/**bar**/": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "**/**bar**/*": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "**/**bar**/**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "**/**bar*/": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "**/**bar*/**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "**/**bar.": [
+
+    ],
+    "**/**bar/": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "**/**bar/*": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "**/**bar/**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "**/**foo": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "**/**foo*": [
+      ".dot folder/afoodle.txt",
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "**/**foo**": [
+      ".dot folder/afoodle.txt",
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "**/**foo**/": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "**/**foo**/*": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "**/**foo**/**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "**/**foo*/": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "**/**foo*/**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "**/**foo.": [
+
+    ],
+    "**/**foo/": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "**/**foo/*": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "**/**foo/**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "**/**foo/bar": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "**/**foo/bar*": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "**/**foo/bar**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "**/**foo/bar**/": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "**/**foo/bar**/*": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "**/**foo/bar**/**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "**/**foo/bar*/": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "**/**foo/bar*/**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "**/**foo/bar.": [
+
+    ],
+    "**/**foo/bar/": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "**/**foo/bar/*": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "**/**foo/bar/**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "**/*bar": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "**/*bar*": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "**/*bar**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "**/*bar**/": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "**/*bar**/*": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "**/*bar**/**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "**/*bar*/": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "**/*bar*/**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "**/*bar.": [
+
+    ],
+    "**/*bar/": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "**/*bar/*": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "**/*bar/**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "**/*foo": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "**/*foo*": [
+      ".dot folder/afoodle.txt",
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "**/*foo**": [
+      ".dot folder/afoodle.txt",
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "**/*foo**/": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "**/*foo**/*": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "**/*foo**/**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "**/*foo*/": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "**/*foo*/**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "**/*foo.": [
+
+    ],
+    "**/*foo/": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "**/*foo/*": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "**/*foo/**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "**/*foo/bar": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "**/*foo/bar*": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "**/*foo/bar**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "**/*foo/bar**/": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "**/*foo/bar**/*": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "**/*foo/bar**/**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "**/*foo/bar*/": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "**/*foo/bar*/**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "**/*foo/bar.": [
+
+    ],
+    "**/*foo/bar/": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "**/*foo/bar/*": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "**/*foo/bar/**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "**/bar": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "**/bar*": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "**/bar**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "**/bar**/": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "**/bar**/*": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "**/bar**/**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "**/bar*/": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "**/bar*/**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "**/bar.": [
+
+    ],
+    "**/bar/": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "**/bar/*": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "**/bar/**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "**/foo": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "**/foo*": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "**/foo**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "**/foo**/": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "**/foo**/*": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "**/foo**/**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "**/foo*/": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "**/foo*/**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "**/foo.": [
+
+    ],
+    "**/foo/": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "**/foo/*": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "**/foo/**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "**/foo/bar": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "**/foo/bar*": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "**/foo/bar**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "**/foo/bar**/": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "**/foo/bar**/*": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "**/foo/bar**/**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "**/foo/bar*/": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "**/foo/bar*/**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "**/foo/bar.": [
+
+    ],
+    "**/foo/bar/": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "**/foo/bar/*": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "**/foo/bar/**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "**bar": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "**bar*": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "**bar**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "**bar**/": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "**bar**/*": [
+
+    ],
+    "**bar**/**": [
+
+    ],
+    "**bar*/": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "**bar*/**": [
+
+    ],
+    "**bar.": [
+
+    ],
+    "**bar/": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "**bar/*": [
+
+    ],
+    "**bar/**": [
+
+    ],
+    "**foo": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "**foo*": [
+      ".dot folder/afoodle.txt",
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "**foo**": [
+      ".dot folder/afoodle.txt",
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "**foo**/": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "**foo**/*": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "**foo**/**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "**foo*/": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "**foo*/**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "**foo.": [
+
+    ],
+    "**foo/": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "**foo/*": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "**foo/**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "**foo/bar": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "**foo/bar*": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "**foo/bar**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "**foo/bar**/": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "**foo/bar**/*": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "**foo/bar**/**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "**foo/bar*/": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "**foo/bar*/**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "**foo/bar.": [
+
+    ],
+    "**foo/bar/": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "**foo/bar/*": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "**foo/bar/**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "*/**bar": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "*/**bar*": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "*/**bar**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "*/**bar**/": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "*/**bar**/*": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "*/**bar**/**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "*/**bar*/": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "*/**bar*/**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "*/**bar.": [
+
+    ],
+    "*/**bar/": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "*/**bar/*": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "*/**bar/**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "*/**foo": [
+      "foo/foo"
+    ],
+    "*/**foo*": [
+      ".dot folder/afoodle.txt",
+      "foo/confoozing.txt",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "*/**foo**": [
+      ".dot folder/afoodle.txt",
+      "foo/confoozing.txt",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "*/**foo**/": [
+
+    ],
+    "*/**foo**/*": [
+
+    ],
+    "*/**foo**/**": [
+
+    ],
+    "*/**foo*/": [
+
+    ],
+    "*/**foo*/**": [
+
+    ],
+    "*/**foo.": [
+
+    ],
+    "*/**foo/": [
+
+    ],
+    "*/**foo/*": [
+
+    ],
+    "*/**foo/**": [
+
+    ],
+    "*/**foo/bar": [
+
+    ],
+    "*/**foo/bar*": [
+
+    ],
+    "*/**foo/bar**": [
+
+    ],
+    "*/**foo/bar**/": [
+
+    ],
+    "*/**foo/bar**/*": [
+
+    ],
+    "*/**foo/bar**/**": [
+
+    ],
+    "*/**foo/bar*/": [
+
+    ],
+    "*/**foo/bar*/**": [
+
+    ],
+    "*/**foo/bar.": [
+
+    ],
+    "*/**foo/bar/": [
+
+    ],
+    "*/**foo/bar/*": [
+
+    ],
+    "*/**foo/bar/**": [
+
+    ],
+    "*/bar": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "*/bar*": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "*/bar**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "*/bar**/": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "*/bar**/*": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "*/bar**/**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "*/bar*/": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "*/bar*/**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "*/bar.": [
+
+    ],
+    "*/bar/": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "*/bar/*": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "*/bar/**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "*/foo": [
+      "foo/foo"
+    ],
+    "*/foo*": [
+      "foo/foo",
+      "foo/foo.txt"
+    ],
+    "*/foo**": [
+      "foo/foo",
+      "foo/foo.txt"
+    ],
+    "*/foo**/": [
+
+    ],
+    "*/foo**/*": [
+
+    ],
+    "*/foo**/**": [
+
+    ],
+    "*/foo*/": [
+
+    ],
+    "*/foo*/**": [
+
+    ],
+    "*/foo.": [
+
+    ],
+    "*/foo/": [
+
+    ],
+    "*/foo/*": [
+
+    ],
+    "*/foo/**": [
+
+    ],
+    "*/foo/bar": [
+
+    ],
+    "*/foo/bar*": [
+
+    ],
+    "*/foo/bar**": [
+
+    ],
+    "*/foo/bar**/": [
+
+    ],
+    "*/foo/bar**/*": [
+
+    ],
+    "*/foo/bar**/**": [
+
+    ],
+    "*/foo/bar*/": [
+
+    ],
+    "*/foo/bar*/**": [
+
+    ],
+    "*/foo/bar.": [
+
+    ],
+    "*/foo/bar/": [
+
+    ],
+    "*/foo/bar/*": [
+
+    ],
+    "*/foo/bar/**": [
+
+    ],
+    "*bar": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "*bar*": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "*bar**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "*bar**/": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "*bar**/*": [
+
+    ],
+    "*bar**/**": [
+
+    ],
+    "*bar*/": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "*bar*/**": [
+
+    ],
+    "*bar.": [
+
+    ],
+    "*bar/": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "*bar/*": [
+
+    ],
+    "*bar/**": [
+
+    ],
+    "*foo": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "*foo*": [
+      ".dot folder/afoodle.txt",
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "*foo**": [
+      ".dot folder/afoodle.txt",
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "*foo**/": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "*foo**/*": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "*foo**/**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "*foo*/": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "*foo*/**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "*foo.": [
+
+    ],
+    "*foo/": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "*foo/*": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "*foo/**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "*foo/bar": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "*foo/bar*": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "*foo/bar**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "*foo/bar**/": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "*foo/bar**/*": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "*foo/bar**/**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "*foo/bar*/": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "*foo/bar*/**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "*foo/bar.": [
+
+    ],
+    "*foo/bar/": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "*foo/bar/*": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "*foo/bar/**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    ".bar": [
+
+    ],
+    ".bar*": [
+
+    ],
+    ".bar**": [
+
+    ],
+    ".bar**/": [
+
+    ],
+    ".bar**/*": [
+
+    ],
+    ".bar**/**": [
+
+    ],
+    ".bar*/": [
+
+    ],
+    ".bar*/**": [
+
+    ],
+    ".bar.": [
+
+    ],
+    ".bar/": [
+
+    ],
+    ".bar/*": [
+
+    ],
+    ".bar/**": [
+
+    ],
+    ".dot*": [
+      ".dot folder/.silly example.txt",
+      ".dot folder/afoodle.txt",
+      ".dot folder/serious_example.txt"
+    ],
+    ".foo": [
+
+    ],
+    ".foo*": [
+
+    ],
+    ".foo**": [
+
+    ],
+    ".foo**/": [
+
+    ],
+    ".foo**/*": [
+
+    ],
+    ".foo**/**": [
+
+    ],
+    ".foo*/": [
+
+    ],
+    ".foo*/**": [
+
+    ],
+    ".foo.": [
+
+    ],
+    ".foo/": [
+
+    ],
+    ".foo/*": [
+
+    ],
+    ".foo/**": [
+
+    ],
+    ".foo/bar": [
+
+    ],
+    ".foo/bar*": [
+
+    ],
+    ".foo/bar**": [
+
+    ],
+    ".foo/bar**/": [
+
+    ],
+    ".foo/bar**/*": [
+
+    ],
+    ".foo/bar**/**": [
+
+    ],
+    ".foo/bar*/": [
+
+    ],
+    ".foo/bar*/**": [
+
+    ],
+    ".foo/bar.": [
+
+    ],
+    ".foo/bar/": [
+
+    ],
+    ".foo/bar/*": [
+
+    ],
+    ".foo/bar/**": [
+
+    ],
+    "/**bar": [
+
+    ],
+    "/**bar*": [
+
+    ],
+    "/**bar**": [
+
+    ],
+    "/**bar**/": [
+
+    ],
+    "/**bar**/*": [
+
+    ],
+    "/**bar**/**": [
+
+    ],
+    "/**bar*/": [
+
+    ],
+    "/**bar*/**": [
+
+    ],
+    "/**bar.": [
+
+    ],
+    "/**bar/": [
+
+    ],
+    "/**bar/*": [
+
+    ],
+    "/**bar/**": [
+
+    ],
+    "/**foo": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "/**foo*": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "/**foo**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "/**foo**/": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "/**foo**/*": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "/**foo**/**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "/**foo*/": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "/**foo*/**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "/**foo.": [
+
+    ],
+    "/**foo/": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "/**foo/*": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "/**foo/**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "/**foo/bar": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "/**foo/bar*": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "/**foo/bar**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "/**foo/bar**/": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "/**foo/bar**/*": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "/**foo/bar**/**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "/**foo/bar*/": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "/**foo/bar*/**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "/**foo/bar.": [
+
+    ],
+    "/**foo/bar/": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "/**foo/bar/*": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "/**foo/bar/**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "/*bar": [
+
+    ],
+    "/*bar*": [
+
+    ],
+    "/*bar**": [
+
+    ],
+    "/*bar**/": [
+
+    ],
+    "/*bar**/*": [
+
+    ],
+    "/*bar**/**": [
+
+    ],
+    "/*bar*/": [
+
+    ],
+    "/*bar*/**": [
+
+    ],
+    "/*bar.": [
+
+    ],
+    "/*bar/": [
+
+    ],
+    "/*bar/*": [
+
+    ],
+    "/*bar/**": [
+
+    ],
+    "/*foo": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "/*foo*": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "/*foo**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "/*foo**/": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "/*foo**/*": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "/*foo**/**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "/*foo*/": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "/*foo*/**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "/*foo.": [
+
+    ],
+    "/*foo/": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "/*foo/*": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "/*foo/**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "/*foo/bar": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "/*foo/bar*": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "/*foo/bar**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "/*foo/bar**/": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "/*foo/bar**/*": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "/*foo/bar**/**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "/*foo/bar*/": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "/*foo/bar*/**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "/*foo/bar.": [
+
+    ],
+    "/*foo/bar/": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "/*foo/bar/*": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "/*foo/bar/**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "/bar": [
+
+    ],
+    "/bar*": [
+
+    ],
+    "/bar**": [
+
+    ],
+    "/bar**/": [
+
+    ],
+    "/bar**/*": [
+
+    ],
+    "/bar**/**": [
+
+    ],
+    "/bar*/": [
+
+    ],
+    "/bar*/**": [
+
+    ],
+    "/bar.": [
+
+    ],
+    "/bar/": [
+
+    ],
+    "/bar/*": [
+
+    ],
+    "/bar/**": [
+
+    ],
+    "/foo": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "/foo*": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "/foo**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "/foo**/": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "/foo**/*": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "/foo**/**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "/foo*/": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "/foo*/**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "/foo.": [
+
+    ],
+    "/foo/": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "/foo/*": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "/foo/**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "/foo/bar": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "/foo/bar*": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "/foo/bar**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "/foo/bar**/": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "/foo/bar**/*": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "/foo/bar**/**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "/foo/bar*/": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "/foo/bar*/**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "/foo/bar.": [
+
+    ],
+    "/foo/bar/": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "/foo/bar/*": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "/foo/bar/**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "bar": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "bar*": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "bar**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "bar**/": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "bar**/*": [
+
+    ],
+    "bar**/**": [
+
+    ],
+    "bar*/": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "bar*/**": [
+
+    ],
+    "bar.": [
+
+    ],
+    "bar/": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "bar/*": [
+
+    ],
+    "bar/**": [
+
+    ],
+    "foo": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "foo*": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "foo**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "foo**/": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "foo**/*": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "foo**/**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "foo*/": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "foo*/**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "foo.": [
+
+    ],
+    "foo/": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "foo/*": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "foo/**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt",
+      "foo/confoozing.txt",
+      "foo/fake_gem.gem",
+      "foo/foo",
+      "foo/foo.txt",
+      "foo/some foo.text"
+    ],
+    "foo/bar": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "foo/bar*": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "foo/bar**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "foo/bar**/": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "foo/bar**/*": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "foo/bar**/**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "foo/bar*/": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "foo/bar*/**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "foo/bar.": [
+
+    ],
+    "foo/bar/": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "foo/bar/*": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ],
+    "foo/bar/**": [
+      "foo/bar/bar",
+      "foo/bar/bar.txt",
+      "foo/bar/baz/baz.txt",
+      "foo/bar/baz/baz2.txt",
+      "foo/bar/some bar.txt"
+    ]
+  },
+  "all_files": [
+    ".dot folder/.silly example.txt",
+    ".dot folder/afoodle.txt",
+    ".dot folder/serious_example.txt",
+    ".gitignore",
+    "foo/some foo.text",
+    "foo/confoozing.txt",
+    "foo/foo.txt",
+    "foo/foo",
+    "foo/bar/some bar.txt",
+    "foo/bar/bar.txt",
+    "foo/bar/baz/baz2.txt",
+    "foo/bar/baz/baz.txt",
+    "foo/bar/bar",
+    "foo/fake_gem.gem",
+    "☃.txt",
+    "file name.txt"
+  ]
+}

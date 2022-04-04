@@ -1,5 +1,6 @@
 require "code_owners/version"
 require "tempfile"
+require "pathspec"
 
 module CodeOwners
 
@@ -16,8 +17,21 @@ module CodeOwners
 
     # this maps the collection of ownership patterns and owners to actual files
     def ownerships(opts = {})
-      codeowner_path = search_codeowners_file(opts)
-      patterns = pattern_owners(File.read(codeowner_path))
+      log("Calculating ownerships for #{opts.inspect}", opts)
+      patterns = pattern_owners(codeowners_data(opts), opts)
+      if opts[:no_git]
+        files = files_to_own(opts)
+        ownerships_by_ruby(patterns, files, opts)
+      else
+        ownerships_by_gitignore(patterns, opts)
+      end
+    end
+
+
+    ####################
+    # gitignore approach
+
+    def ownerships_by_gitignore(patterns, opts = {})
       git_owner_info(patterns.map { |p| p[0] }).map do |line, pattern, file|
         if line.empty?
           { file: file, owner: NO_OWNER, line: nil, pattern: nil }
@@ -30,32 +44,6 @@ module CodeOwners
           }
         end
       end
-    end
-
-    # read the github file and spit out a slightly formatted list of patterns and their owners
-    # Empty/invalid/commented lines are still included in order to preserve line numbering
-    def pattern_owners(codeowner_data)
-      patterns = []
-      codeowner_data.split("\n").each_with_index do |line, i|
-        stripped_line = line.strip
-        if stripped_line == "" || stripped_line.start_with?("#")
-          patterns << ['', ''] # Comment / empty line
-
-        elsif stripped_line.start_with?("!")
-          # unsupported per github spec
-          log "Parse error line #{(i+1).to_s}: \"#{line}\""
-          patterns << ['', '']
-
-        elsif stripped_line.match(CODEOWNER_PATTERN)
-          patterns << [$1, $2]
-
-        else
-          log "Parse error line #{(i+1).to_s}: \"#{line}\""
-          patterns << ['', '']
-
-        end
-      end
-      patterns
     end
 
     def git_owner_info(patterns)
@@ -86,20 +74,81 @@ module CodeOwners
       end
     end
 
+
+    ###############
+    # ruby approach
+
+    def ownerships_by_ruby(patterns, files, opts = {})
+      ownerships = files.map { |f| { file: f, owner: NO_OWNER, line: nil, pattern: nil } }
+
+      patterns.each_with_index do |(pattern, owner), i|
+        next if pattern == ""
+        pattern = pattern.gsub(/\/\*$/, "/**")
+        spec_pattern = PathSpec::GitIgnoreSpec.new(pattern)
+        ownerships.each do |o|
+          next unless spec_pattern.match(o[:file])
+          o[:owner]   = owner
+          o[:line]    = i+1
+          o[:pattern] = pattern
+        end
+      end
+
+      ownerships
+    end
+
+
+
+    ##############
+    # helper stuff
+
+    # read the github file and spit out a slightly formatted list of patterns and their owners
+    # Empty/invalid/commented lines are still included in order to preserve line numbering
+    def pattern_owners(codeowner_data, opts = {})
+      patterns = []
+      codeowner_data.split("\n").each_with_index do |line, i|
+        stripped_line = line.strip
+        if stripped_line == "" || stripped_line.start_with?("#")
+          patterns << ['', ''] # Comment / empty line
+
+        elsif stripped_line.start_with?("!")
+          # unsupported per github spec
+          log("Parse error line #{(i+1).to_s}: \"#{line}\"", opts)
+          patterns << ['', '']
+
+        elsif stripped_line.match(CODEOWNER_PATTERN)
+          patterns << [$1, $2]
+
+        else
+          log("Parse error line #{(i+1).to_s}: \"#{line}\"", opts)
+          patterns << ['', '']
+
+        end
+      end
+      patterns
+    end
+
+    def log(message, opts = {})
+      puts message if opts[:log]
+    end
+
+    private
+
     # https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners#codeowners-file-location
     # To use a CODEOWNERS file, create a new file called CODEOWNERS in the root, docs/, or .github/ directory of the repository, in the branch where you'd like to add the code owners.
 
     # if we have access to git, use that to figure out our current repo path and look in there for codeowners
     # if we don't, this function will attempt to find it while walking back up the directory tree
-    def search_codeowners_file(opts = {})
-      if opts[:codeowner_path]
-        return opts[:codeowner_path] if File.exist?(opts[:codeowner_path])
+    def codeowners_data(opts = {})
+      if opts[:codeowner_data]
+        return opts[:codeowner_data]
+      elsif opts[:codeowner_path]
+        return File.read(opts[:codeowner_path]) if File.exist?(opts[:codeowner_path])
       elsif opts[:no_git]
         path = Dir.pwd.split(File::SEPARATOR)
         while !path.empty?
           POTENTIAL_LOCATIONS.each do |pl|
             current_file_path = File.join(path, pl)
-            return current_file_path if File.exist?(current_file_path)
+            return File.read(current_file_path) if File.exist?(current_file_path)
           end
           path.pop
         end
@@ -107,17 +156,32 @@ module CodeOwners
         path = current_repo_path
         POTENTIAL_LOCATIONS.each do |pl|
           current_file_path = File.join(path, pl)
-          return current_file_path if File.exist?(current_file_path)
+          return File.read(current_file_path) if File.exist?(current_file_path)
         end
       end
       raise("[ERROR] CODEOWNERS file does not exist.")
     end
 
-    def log(message)
-      puts message
-    end
+    def files_to_own(opts = {})
+      # glob all files
+      all_files_pattern = File.join("**","**")
 
-    private
+      # optionally prefix with list of directories to scope down potential evaluation space
+      if opts[:scoped_dirs]
+        all_files_pattern = File.join("{#{opts[:scoped_dirs].join(",")}}", all_files_pattern)
+      end
+
+      all_files = Dir.glob(all_files_pattern, File::FNM_DOTMATCH)
+      all_files.reject!{|f| f.start_with?(".git/") || File.directory?(f) }
+
+      # filter out ignores if we have them
+      opts[:ignores]&.each do |ignore|
+        ignores = PathSpec.new(File.readlines(ignore, chomp: true).map{|i| i.end_with?("/*") ? "#{i}*" : i })
+        all_files.reject! { |f| ignores.specs.any?{|p| p.match(f) } }
+      end
+
+      all_files
+    end
 
     def make_utf8(input)
       input.force_encoding(Encoding::UTF_8)

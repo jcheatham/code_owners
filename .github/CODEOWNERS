@@ -4,6 +4,7 @@
 
 # empty line followed by a comment?!  madness
 lib/*                   @jcheatham
+**/bar/** @jcheatham
 spec/*                  @jcheatham
 Rakefile                @jcheatham
 
