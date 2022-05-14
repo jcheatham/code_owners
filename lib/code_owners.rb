@@ -18,12 +18,12 @@ module CodeOwners
     # this maps the collection of ownership patterns and owners to actual files
     def ownerships(opts = {})
       log("Calculating ownerships for #{opts.inspect}", opts)
-      patterns = pattern_owners(codeowners_data(opts), opts)
+      patowns = pattern_owners(codeowners_data(opts), opts)
       if opts[:no_git]
         files = files_to_own(opts)
-        ownerships_by_ruby(patterns, files, opts)
+        ownerships_by_ruby(patowns, files, opts)
       else
-        ownerships_by_gitignore(patterns, opts)
+        ownerships_by_gitignore(patowns, opts)
       end
     end
 
@@ -78,24 +78,35 @@ module CodeOwners
     ###############
     # ruby approach
 
-    def ownerships_by_ruby(patterns, files, opts = {})
-      ownerships = files.map { |f| { file: f, owner: NO_OWNER, line: nil, pattern: nil } }
+    def ownerships_by_ruby(patowns, files, opts = {})
+      pattern_list = build_ruby_patterns(patowns, opts)
+      unowned = { owner: NO_OWNER, line: nil, pattern: nil }
 
-      patterns.each_with_index do |(pattern, owner), i|
-        next if pattern == ""
-        pattern = pattern.gsub(/\/\*$/, "/**")
-        spec_pattern = PathSpec::GitIgnoreSpec.new(pattern)
-        ownerships.each do |o|
-          next unless spec_pattern.match(o[:file])
-          o[:owner]   = owner
-          o[:line]    = i+1
-          o[:pattern] = pattern
+      files.map do |file|
+        last_match = nil
+        # have a flag to go through in reverse order as potential optimization?
+        # really depends on the data
+        pattern_list.each do |p|
+          last_match = p if p[:pattern_regex].match(file)
         end
+        (last_match || unowned).dup.tap{|h| h[:file] = file }
       end
-
-      ownerships
     end
 
+    def build_ruby_patterns(patowns, opts = {})
+      pattern_list = []
+      patowns.each_with_index do |(pattern, owner), i|
+        next if pattern == ""
+        pattern_list << {
+          owner: owner,
+          line: i+1,
+          pattern: pattern,
+          # gsub because spec approach needs a little help matching remainder of tree recursively
+          pattern_regex: PathSpec::GitIgnoreSpec.new(pattern.gsub(/\/\*$/, "/**"))
+        }
+      end
+      pattern_list
+    end
 
 
     ##############

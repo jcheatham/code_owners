@@ -46,10 +46,10 @@ RSpec.describe CodeOwners do |rspec|
         results = CodeOwners.ownerships(no_git: true)
         expect(results).to match_array([
           {:file=>"zip", :owner=>"UNOWNED", :line=>nil, :pattern=>nil},
-          {:file=>"foo.rb", :owner=>"own2", :line=>2, :pattern=>"foo*"},
-          {:file=>"foo/bar.rb", :owner=>"own3", :line=>3, :pattern=>"foo/**"},
-          {:file=>"foo/bar/baz.rb", :owner=>"own3", :line=>3, :pattern=>"foo/**"},
-          {:file=>"foo/bar/baz/meow.txt", :owner=>"own3", :line=>3, :pattern=>"foo/**"},
+          {:file=>"foo.rb", :owner=>"own2", :line=>2, :pattern=>"foo*", pattern_regex: anything},
+          {:file=>"foo/bar.rb", :owner=>"own3", :line=>3, :pattern=>"foo/**", pattern_regex: anything},
+          {:file=>"foo/bar/baz.rb", :owner=>"own3", :line=>3, :pattern=>"foo/**", pattern_regex: anything},
+          {:file=>"foo/bar/baz/meow.txt", :owner=>"own3", :line=>3, :pattern=>"foo/**", pattern_regex: anything},
           {:file=>"waffles", :owner=>"UNOWNED", :line=>nil, :pattern=>nil}
         ])
       end
